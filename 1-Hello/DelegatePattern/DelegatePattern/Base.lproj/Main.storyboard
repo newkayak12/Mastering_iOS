@@ -159,10 +159,30 @@
                     <view key="view" contentMode="scaleToFill" id="ZSm-8R-IqO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S6u-ll-9gi">
+                                <rect key="frame" x="20" y="144" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="w2D-sZ-s9y" id="wV8-5Q-fBB"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="RkY-Vu-KJG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="S6u-ll-9gi" firstAttribute="top" secondItem="RkY-Vu-KJG" secondAttribute="top" constant="25" id="EJf-0g-J6M"/>
+                            <constraint firstItem="RkY-Vu-KJG" firstAttribute="trailing" secondItem="S6u-ll-9gi" secondAttribute="trailing" constant="20" id="Oa8-KI-f4e"/>
+                            <constraint firstItem="S6u-ll-9gi" firstAttribute="top" secondItem="RkY-Vu-KJG" secondAttribute="top" id="PgX-YO-5vG"/>
+                            <constraint firstItem="S6u-ll-9gi" firstAttribute="leading" secondItem="RkY-Vu-KJG" secondAttribute="leading" constant="20" id="htP-jX-6z2"/>
+                            <constraint firstItem="S6u-ll-9gi" firstAttribute="leading" secondItem="RkY-Vu-KJG" secondAttribute="leading" constant="20" id="wRC-8o-hiK"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="RrG-i1-83V"/>
+                    <connections>
+                        <outlet property="inputField" destination="S6u-ll-9gi" id="jLU-B1-9TF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wgD-Lo-7bq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

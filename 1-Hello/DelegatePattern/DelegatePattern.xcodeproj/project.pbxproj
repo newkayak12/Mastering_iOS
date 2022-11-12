@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EEF3A37291F5595007D2D4C /* ComposeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEF3A36291F5595007D2D4C /* ComposeDelegate.swift */; };
 		AA137DF32528725F00C82F61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA137DF22528725F00C82F61 /* AppDelegate.swift */; };
 		AA137DF52528725F00C82F61 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA137DF42528725F00C82F61 /* SceneDelegate.swift */; };
 		AA137DFA2528725F00C82F61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA137DF82528725F00C82F61 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7EEF3A36291F5595007D2D4C /* ComposeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeDelegate.swift; sourceTree = "<group>"; };
 		AA137DEF2528725F00C82F61 /* DelegatePattern.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DelegatePattern.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA137DF22528725F00C82F61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA137DF42528725F00C82F61 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				AA137DFB2528725F00C82F61 /* Assets.xcassets */,
 				AA137DFD2528725F00C82F61 /* LaunchScreen.storyboard */,
 				AA137E002528725F00C82F61 /* Info.plist */,
+				7EEF3A36291F5595007D2D4C /* ComposeDelegate.swift */,
 			);
 			path = DelegatePattern;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA137DF32528725F00C82F61 /* AppDelegate.swift in Sources */,
+				7EEF3A37291F5595007D2D4C /* ComposeDelegate.swift in Sources */,
 				AA137DF52528725F00C82F61 /* SceneDelegate.swift in Sources */,
 				AA137E1A2528750200C82F61 /* CustomDelegateViewController.swift in Sources */,
 				AA137E1C2528750200C82F61 /* ComposeViewController.swift in Sources */,
