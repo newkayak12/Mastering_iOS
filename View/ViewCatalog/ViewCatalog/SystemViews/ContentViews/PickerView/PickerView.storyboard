@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Z3-Yc-71s">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4Z3-Yc-71s">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,14 +21,14 @@
                             <tableViewSection id="160-cP-9Sz">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="f2i-NN-2Bt" style="IBUITableViewCellStyleDefault" id="Ksm-h8-NSC">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ksm-h8-NSC" id="LY2-s7-ZfT">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Text Picker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="f2i-NN-2Bt">
-                                                    <rect key="frame" x="20" y="0.0" width="355" height="44"/>
+                                                    <rect key="frame" x="20" y="0.0" width="355.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
@@ -41,14 +41,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="e4r-f9-w15" style="IBUITableViewCellStyleDefault" id="owB-uJ-1jN">
-                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="93.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="owB-uJ-1jN" id="KL9-lL-jQN">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Image Picker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="e4r-f9-w15">
-                                                    <rect key="frame" x="20" y="0.0" width="355" height="44"/>
+                                                    <rect key="frame" x="20" y="0.0" width="355.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
@@ -81,13 +81,41 @@
                     <view key="view" contentMode="scaleToFill" id="S1S-fA-egX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRP-HQ-Fp9">
+                                <rect key="frame" x="0.0" y="340" width="414" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9HV-xe-fwI" id="eXK-eD-WWX"/>
+                                    <outlet property="delegate" destination="9HV-xe-fwI" id="klj-u8-8rL"/>
+                                </connections>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sE-oa-0Kh">
+                                <rect key="frame" x="20" y="827" width="374" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Report"/>
+                                <connections>
+                                    <action selector="report:" destination="9HV-xe-fwI" eventType="touchUpInside" id="gjm-G6-k4h"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="w7m-my-cQa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2sE-oa-0Kh" firstAttribute="leading" secondItem="w7m-my-cQa" secondAttribute="leading" constant="20" id="72u-Y5-sHD"/>
+                            <constraint firstItem="CRP-HQ-Fp9" firstAttribute="trailing" secondItem="w7m-my-cQa" secondAttribute="trailing" id="XOv-Ga-2cO"/>
+                            <constraint firstItem="2sE-oa-0Kh" firstAttribute="bottom" secondItem="w7m-my-cQa" secondAttribute="bottom" id="epH-U3-gIV"/>
+                            <constraint firstItem="CRP-HQ-Fp9" firstAttribute="leading" secondItem="w7m-my-cQa" secondAttribute="leading" id="hgS-2x-9xb"/>
+                            <constraint firstItem="CRP-HQ-Fp9" firstAttribute="centerY" secondItem="S1S-fA-egX" secondAttribute="centerY" id="hpe-Q1-Uh9"/>
+                            <constraint firstItem="w7m-my-cQa" firstAttribute="trailing" secondItem="2sE-oa-0Kh" secondAttribute="trailing" constant="20" id="m8e-e6-7qC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="picker" destination="CRP-HQ-Fp9" id="ALQ-6M-hAz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1II-Zl-GcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1284" y="1187"/>
+            <point key="canvasLocation" x="1282.608695652174" y="1186.6071428571429"/>
         </scene>
         <!--Image Picker-->
         <scene sceneID="3Ph-da-EuK">
@@ -112,6 +140,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="jvZ-Dp-Vav"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="uXF-IV-CTq" id="sQn-6N-svY"/>
+                                    <outlet property="delegate" destination="uXF-IV-CTq" id="aV1-qF-XUI"/>
+                                </connections>
                             </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CpW-4g-QhE"/>
