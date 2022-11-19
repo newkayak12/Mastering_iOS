@@ -1,26 +1,5 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
 import UIKit
+import CoreGraphics
 
 class ImageResizingViewController: UIViewController {
     
@@ -28,7 +7,12 @@ class ImageResizingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if let targetImage = UIImage(named: "photo"){
+            let size = CGSize(width: targetImage.size.width / 5, height: targetImage.size.height / 5 )
+//            imageView.image = resizingWithImageContext(image: targetImage, to: size)
+            
+            imageView.image = resizingWithBitmapContext(image: targetImage, to: size)
+        }
         
     }
 }
@@ -38,15 +22,46 @@ class ImageResizingViewController: UIViewController {
 
 extension ImageResizingViewController {
     func resizingWithImageContext(image: UIImage, to size: CGSize) -> UIImage? {
-        return nil
+        //투명하면 false, 아니면 true
+        UIGraphicsBeginImageContextWithOptions(size, true, 0.0)
+        let frame = CGRect(origin: .zero, size: size)
+        image.draw(in: frame)
+        let resultImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+        return resultImage
     }
 }
 
+//#iOS Image Resizing
+//#Swift Image Resizing
 
-
-extension ImageResizingViewController {
+extension ImageResizingViewController { //이미지 리사이징하면서 비트맵 속성도 같이 바꾼다면
     func resizingWithBitmapContext(image: UIImage, to size: CGSize) -> UIImage? {
-        return nil
+        //CoreGraphics에 있기 때문에 import 해야한다.
+        guard let cgImage = image.cgImage else {
+            //코어 그래픽스의 CG이미지로 바꿔야한다.
+            return nil
+        }
+        let bpc = cgImage.bitsPerComponent
+        let bpr = cgImage.bytesPerRow
+        let colorSpace = cgImage.colorSpace!
+        let bitmapInfo = cgImage.bitmapInfo
+        
+        //data -> 이미지의 포인터 전달해야함 nil 전달하면 알아서 처리해줌
+        guard let context = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: bpc, bytesPerRow: bpr, space: colorSpace, bitmapInfo: bitmapInfo.rawValue) else {
+            return nil
+        }
+                
+        context.interpolationQuality = .high
+        let frame = CGRect(origin: .zero, size: size)
+        context.draw(cgImage, in: frame);
+        
+        guard let resultImage = context.makeImage() else {
+            return nil;
+        }
+        
+        
+        return UIImage(cgImage: resultImage)
     }
 }
 

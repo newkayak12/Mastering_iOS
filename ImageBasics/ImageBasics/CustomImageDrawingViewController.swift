@@ -1,26 +1,3 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class CustomDrawingView: UIView {
@@ -30,7 +7,13 @@ class CustomDrawingView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
+        //라이프 사이클 동안 반복해서 호출된다.
+        //여기에서 이미지뷰를 생성하고 addSubview로 추가하면 view를 그릴 때마다
+        //새로운 이미지가 추가된다.
+        //UIImage가 제공하는 메소드로 직접 그려야한다.
+        starImg?.draw(at: CGPoint(x: 0, y: 0))
+        bellImg?.draw(in: CGRect(x: 0, y: 80, width: 100, height: 100))
+        umbrellaImg?.drawAsPattern(in: rect)//이미지 크기가 프레임보다 작으면 패턴 형태로 그림
         
     }
 }
