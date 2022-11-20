@@ -1,26 +1,3 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 
@@ -31,16 +8,59 @@ class InputViewViewController: UIViewController {
     
     @IBOutlet weak var genderField: UITextField!
     
+    @IBOutlet var pickerContainerView: UIView!
+    @IBOutlet var buttonContainerView: UIView!
     
+    @IBOutlet var inputAccessory: UIToolbar!
+    
+    @IBAction func uiBar(_ sender: UIBarButtonItem) {
+        switch sender.tag {
+            case 0:
+                if ageField.isFirstResponder {
+                    nameField.becomeFirstResponder()
+                }
+                if genderField.isFirstResponder{
+                    ageField.becomeFirstResponder()
+                }
+            case 1:
+                if ageField.isFirstResponder {
+                    genderField.becomeFirstResponder()
+                }
+                if nameField.isFirstResponder {
+                    ageField.becomeFirstResponder()
+                }
+            default:
+                break;
+        }
+    }
+    
+    @IBAction func selectGender(_ sender: UIButton) {
+        genderField.text = sender.tag == 0 ? "M" : "F"
+        /**
+            UIInputViewAudioFeedback
+            UIDevice 의 메소드
+         */
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ageField.inputView = pickerContainerView
+        genderField.inputView = buttonContainerView
+        
+        nameField.inputAccessoryView = inputAccessory
+        ageField.inputAccessoryView = inputAccessory
+        genderField.inputAccessoryView = inputAccessory
         
     }
 }
 
 
-
+class GenderInputView: UIView, UIInputViewAudioFeedback {
+    var enableInputClicksWhenVisible: Bool {
+        return true
+    }
+}
 
 
 
@@ -60,7 +80,7 @@ extension InputViewViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        ageField.text = "\(row + 1)"
     }
 }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="efO-vX-nCo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="efO-vX-nCo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="DiZ-dr-nbt">
-                                <rect key="frame" x="16" y="108" width="382" height="263.5"/>
+                                <rect key="frame" x="16" y="112" width="382" height="263.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ijB-0d-Rbb">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="74.5"/>
@@ -86,18 +86,105 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="ageField" destination="ftq-jo-cH3" id="utD-vp-t0j"/>
+                        <outlet property="buttonContainerView" destination="m6d-fX-nvq" id="ehj-Tx-yFI"/>
                         <outlet property="genderField" destination="rr7-k6-KbB" id="vwh-gk-Rva"/>
+                        <outlet property="inputAccessory" destination="eHS-sh-b1n" id="U51-eD-Qjh"/>
                         <outlet property="nameField" destination="nPh-IX-w0b" id="7cU-os-jIu"/>
+                        <outlet property="pickerContainerView" destination="e4D-Yh-pGa" id="yc5-oy-Y2J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UHh-Wy-za8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="e4D-Yh-pGa">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="340"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFc-Ul-w2z">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="340"/>
+                            <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            <connections>
+                                <outlet property="dataSource" destination="efO-vX-nCo" id="K6s-fh-EdT"/>
+                                <outlet property="delegate" destination="efO-vX-nCo" id="Cll-5W-gA2"/>
+                            </connections>
+                        </pickerView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="TRv-i5-e48"/>
+                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    <constraints>
+                        <constraint firstItem="oFc-Ul-w2z" firstAttribute="leading" secondItem="TRv-i5-e48" secondAttribute="leading" id="4w1-02-gy4"/>
+                        <constraint firstItem="TRv-i5-e48" firstAttribute="bottom" secondItem="oFc-Ul-w2z" secondAttribute="bottom" id="6qQ-cR-o70"/>
+                        <constraint firstItem="oFc-Ul-w2z" firstAttribute="top" secondItem="e4D-Yh-pGa" secondAttribute="top" id="8Ky-G1-HCc"/>
+                        <constraint firstItem="oFc-Ul-w2z" firstAttribute="trailing" secondItem="TRv-i5-e48" secondAttribute="trailing" id="9MT-jp-oYS"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="m6d-fX-nvq" customClass="GenderInputView" customModule="ViewCatalog" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="340"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="9YE-DO-9lB">
+                            <rect key="frame" x="45" y="145" width="150" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8t-F0-IAR">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="b3X-zJ-PMn"/>
+                                        <constraint firstAttribute="height" constant="50" id="dZF-fi-gjQ"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="m.circle" catalog="system"/>
+                                    <connections>
+                                        <action selector="selectGender:" destination="efO-vX-nCo" eventType="touchUpInside" id="hwn-0b-99p"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spw-Cf-oFW">
+                                    <rect key="frame" x="100" y="0.0" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="BoE-fI-JOm"/>
+                                        <constraint firstAttribute="height" constant="50" id="r7K-S4-PN4"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="f.circle" catalog="system"/>
+                                    <connections>
+                                        <action selector="selectGender:" destination="efO-vX-nCo" eventType="touchUpInside" id="cpK-nu-OFh"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="5FJ-R9-4El"/>
+                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    <constraints>
+                        <constraint firstItem="9YE-DO-9lB" firstAttribute="centerY" secondItem="m6d-fX-nvq" secondAttribute="centerY" id="KQ4-wm-VNe"/>
+                        <constraint firstItem="9YE-DO-9lB" firstAttribute="centerX" secondItem="m6d-fX-nvq" secondAttribute="centerX" id="fta-HN-8PX"/>
+                    </constraints>
+                </view>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="eHS-sh-b1n">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem title="이전" id="IOX-8g-4n5">
+                            <connections>
+                                <action selector="uiBar:" destination="efO-vX-nCo" id="jdF-WJ-Kfp"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem tag="1" title="다음" id="9Ia-HE-VO4">
+                            <connections>
+                                <action selector="uiBar:" destination="efO-vX-nCo" id="uZe-Ep-4mh"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
             </objects>
             <point key="canvasLocation" x="-168" y="2559"/>
         </scene>
     </scenes>
     <resources>
+        <image name="f.circle" catalog="system" width="128" height="123"/>
+        <image name="m.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
