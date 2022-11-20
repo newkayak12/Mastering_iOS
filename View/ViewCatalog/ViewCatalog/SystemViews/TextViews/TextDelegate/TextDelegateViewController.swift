@@ -1,26 +1,3 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class TextDelegateViewController: UIViewController {
@@ -35,6 +12,40 @@ class TextDelegateViewController: UIViewController {
     
     let regex = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
     
+    
+    /**
+     - TEXTFIELD
+     
+     TAP => textFieldShouldBeginEditing(_:) -> true?
+     => BecomeFirstResponder
+     START_EDITING => textFieldBeginEditing(_:) : {
+     
+        textField(_:shouldChangeCharactersIn:replacementString:)
+        clearBtn -> textFieldShouldClear(_:)
+        returnBtn -> textFieldShouldReturn(_:)
+     
+     }
+     
+     END_EDITING => textFieldShouldEndEditing(_:) -> true? ResignFirstResponder
+     => textFieldDidEndEditing(_:)
+---------------------------------------------------------------------
+     - TEXTVIEW
+     
+     TAP => textViewShouldBeginEditing(_:) -> true?
+     => BecomeFirstResponder
+     START_EDITING => textViewDidBeginEditing(_:) :{
+     
+        textView(_:shouldChangeTextIn:replacementText:)
+        change -> textViewDidChange(_:)
+        select -> textViewDidChangeSelection(_:)
+        dataSetInteraction -> textView(_:shouldInteractWith:In:interaction:)
+     
+     }
+     
+     END_EDITING => textViewShouldEndEditing(_:) -> true? ResignFirstResponder
+     => textViewDidEndEditing(_:)
+     
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
