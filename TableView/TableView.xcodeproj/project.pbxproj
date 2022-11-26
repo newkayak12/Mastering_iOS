@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EB48BC429323FD500C1585B /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB48BC329323FD500C1585B /* SwitchTableViewCell.swift */; };
 		AA0401B725EBA22300535A6A /* TableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA0401B625EBA22300535A6A /* TableViewController.storyboard */; };
 		AA0880E420EEA136004BCAEA /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0880E320EEA136004BCAEA /* Products.swift */; };
 		AA0880E620EEA301004BCAEA /* SingleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0880E520EEA301004BCAEA /* SingleSelectionViewController.swift */; };
@@ -57,6 +58,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7EB48BC2293234DC00C1585B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7EB48BC329323FD500C1585B /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		AA0401B625EBA22300535A6A /* TableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TableViewController.storyboard; sourceTree = "<group>"; };
 		AA0880E320EEA136004BCAEA /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		AA0880E520EEA301004BCAEA /* SingleSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSelectionViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 			children = (
 				AAA1E1D525E3A98F006BC597 /* MultiSection.storyboard */,
 				AA84F76120E21D67004DF711 /* MultiSectionTableViewViewController.swift */,
+				7EB48BC329323FD500C1585B /* SwitchTableViewCell.swift */,
 			);
 			path = MultiSection;
 			sourceTree = "<group>";
@@ -338,6 +342,7 @@
 				AACF6A0220DA448400DE209C /* Assets.xcassets */,
 				AACF6A0420DA448400DE209C /* LaunchScreen.storyboard */,
 				AACF6A0720DA448400DE209C /* Info.plist */,
+				7EB48BC2293234DC00C1585B /* README.md */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				AA0880EC20EF05CB004BCAEA /* RowActionViewController.swift in Sources */,
 				AA0880E620EEA301004BCAEA /* SingleSelectionViewController.swift in Sources */,
 				AAA1E24B25E3F832006BC597 /* SceneDelegate.swift in Sources */,
+				7EB48BC429323FD500C1585B /* SwitchTableViewCell.swift in Sources */,
 				AAE2BD2E20EFC84D00FD64F1 /* PrefetchingViewController.swift in Sources */,
 				AA871A4920E372B8004E2E8B /* AccessoryViewViewController.swift in Sources */,
 				AA0880E820EEDEE5004BCAEA /* MultipleSelectionViewController.swift in Sources */,
