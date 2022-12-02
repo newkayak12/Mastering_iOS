@@ -31,12 +31,23 @@ class SingleSelectionViewController: UIViewController {
     
     
     func selectRandomCell() {
+        let section = Int.random(in: 0 ..< list.count)
+        let row = Int.random(in: 0 ..< list[section].countries.count)
+        let targetIndexPath = IndexPath(row: row, section: section)
         
+        listTableView.selectRow(at: targetIndexPath, animated: true, scrollPosition: .top)
     }
     
     
     func deselect() {
-        
+        if let selected = listTableView.indexPathForSelectedRow {
+            listTableView.deselectRow(at: selected, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1){ [weak self] in
+                let first = IndexPath(row: 0, section: 0)
+                self?.listTableView.scrollToRow(at: first, at: .top, animated: true)
+                
+            }
+        }
     }
     
     
@@ -104,7 +115,38 @@ extension SingleSelectionViewController: UITableViewDataSource {
 
 
 extension SingleSelectionViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.row == 0 {
+            return nil
+        }
+        return indexPath
+    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let target = list[indexPath.section].countries[indexPath.row]
+//        tableView.cellForRow(at: indexPath)?.textLabel?.textColor = .black
+//        showAlert(with: target)
+//    }
+//    func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
+//        return indexPath
+//    }
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        tableView.cellForRow(at: indexPath)?.textLabel?.textColor = .systemGray3
+//        print(#function, indexPath)
+//    }
+//    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+//        if indexPath.row == 0 {
+//            return false
+//        }
+//        return true
+//    }
+//    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+//        //셀 강조
+//        tableView.cellForRow(at: indexPath)?.textLabel?.textColor = .black
+//    }
+//    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+//        //강조 끝나고
+//        tableView.cellForRow(at: indexPath)?.textLabel?.textColor = .systemGray3
+//    }
 }
 
 
@@ -127,6 +169,15 @@ class SingleSelectionCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        textLabel?.textColor = .systemGray3
+        textLabel?.highlightedTextColor = .black
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)//첫 번째 파라미터로 선택 상태 알 수 있음
+    }
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
     }
 }
 

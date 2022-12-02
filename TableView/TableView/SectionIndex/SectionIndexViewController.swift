@@ -1,26 +1,3 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class SectionIndexViewController: UIViewController {
@@ -31,8 +8,9 @@ class SectionIndexViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        listTableView.sectionIndexColor = UIColor.systemBlue
+        listTableView.sectionIndexBackgroundColor = UIColor.secondarySystemBackground
+        listTableView.sectionIndexTrackingBackgroundColor = UIColor.systemYellow
     }
 }
 
@@ -62,6 +40,15 @@ extension SectionIndexViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return list[section].title
+    }
+    
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+//        return list.map { $0.title }
+        return stride(from: 0, to: list.count, by: 2).map { list[$0].title }
+        //표시되는 순서에 맞게 그냥 스크롤되는 것일 뿐 따라서 스크롤도 맞춰줘야할 것같음
+    }
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return index * 2;
     }
 }
 

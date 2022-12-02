@@ -1,26 +1,3 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class SwipeActionViewController: UIViewController {
@@ -57,7 +34,45 @@ extension SwipeActionViewController: UITableViewDataSource {
 
 @available(iOS 11.0, *)
 extension SwipeActionViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        //action, view, 마지막에 호출해야하는 클로저
+        let unreadAction = UIContextualAction(style: .normal, title: "읽지 않음") { (action, view, complete) in
+            
+            complete(true)//제대로 움직이면 true
+        }
+        
+        unreadAction.backgroundColor = .blue
+        unreadAction.image = UIImage(systemName: "envelope")
+        let configuration = UISwipeActionsConfiguration(actions: [unreadAction])
+        return configuration
+    }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") {[weak self] (action, view, complete) in
+            print("DELETE")
+            self?.list.remove(at: indexPath.row)
+            tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            complete(true)
+        }
+        deleteAction.backgroundColor = .red
+        deleteAction.image = UIImage(systemName: "trash")
+        let flagAction = UIContextualAction(style: .normal, title: "깃발 표시") { (action, view, complete) in
+            print("FLAG")
+            complete(true)
+        }
+        flagAction.image = UIImage(systemName: "flag")
+        flagAction.backgroundColor = UIColor.systemOrange
+        
+        let menuAction = UIContextualAction(style: .normal, title: "기타") { (action, view, complete) in
+            print("MENU")
+            complete(true)
+        }
+        menuAction.image = UIImage(systemName: "ellipsis")
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction, flagAction, menuAction])
+        configuration.performsFirstActionWithFullSwipe = true//첫번째 끝까지 스와이프 시 실행
+        return configuration
+    }
 }
 
 

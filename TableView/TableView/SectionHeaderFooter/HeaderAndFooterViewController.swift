@@ -9,7 +9,9 @@ class SectionHeaderAndFooterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        listTableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier:    "header")
+        let headerNib = UINib(nibName: "CustomHeader", bundle: nil)
+//        listTableView.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier:    "header")
+        listTableView.register(headerNib, forHeaderFooterViewReuseIdentifier:    "header")
     }
 }
 
@@ -45,29 +47,31 @@ extension SectionHeaderAndFooterViewController: UITableViewDataSource {
 
 extension SectionHeaderAndFooterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
-        headerView?.textLabel?.text = list[section].title
-        headerView?.detailTextLabel?.text = "lorem ipsum"
-        
+//        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
+//        headerView?.textLabel?.text = list[section].title
+//        headerView?.detailTextLabel?.text = "lorem ipsum"
 //        headerView?.backgroundColor = .secondarySystemFill
+        
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! CustomHeaderView
+        headerView.titleLabel.text = list[section].title
+        headerView.countLabel.text = "\(list[section].countries.count)"
        
         return headerView
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {//시각적 속성
-        if let headerView = view as? UITableViewHeaderFooterView{
-            headerView.textLabel?.textColor = .systemBlue
-            headerView.textLabel?.textAlignment = .center
-            
-            if headerView.backgroundView == nil {
-                let v = UIView(frame: .zero)
-                v.backgroundColor = .secondarySystemFill
-                v.isUserInteractionEnabled = false
-                headerView.backgroundView = v
-            }
-        }
-        
-    }
+//    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {//시각적 속성
+//        if let headerView = view as? UITableViewHeaderFooterView{
+//            headerView.textLabel?.textColor = .systemBlue
+//            headerView.textLabel?.textAlignment = .center
+//
+//            if headerView.backgroundView == nil {
+//                let v = UIView(frame: .zero)
+//                v.backgroundColor = .secondarySystemFill
+//                v.isUserInteractionEnabled = false
+//                headerView.backgroundView = v
+//            }
+//        }
+//    }
 }
 
 

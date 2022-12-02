@@ -1,26 +1,3 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 import MessageUI
 
@@ -86,6 +63,8 @@ extension RowActionViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        //Edit관련 -> RowAction == edit
+        
         return indexPath.row != 0
     }
 }
@@ -94,6 +73,27 @@ extension RowActionViewController: UITableViewDataSource {
 
 
 extension RowActionViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let emailAction = UITableViewRowAction(style: .default, title: "Email") { [weak self] (action, indexPath) in
+            if let data = self?.list[indexPath.row]{
+                self?.sendEmail(with: data)
+            }
+        }
+        emailAction.backgroundColor = .black
+        //backGround는 가능하나 fontColor 등은 바꿀 수 없다.
+        
+        
+        let messageAction = UITableViewRowAction(style: .normal, title: "SMS") { [weak self] (action, indexPath) in
+            if let data = self?.list[indexPath.row]{
+                self?.sendMessage(with: data)
+            }
+        }
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") {[weak self]  (action, indexPath) in
+                self?.delete(at: indexPath)
+        }
+        
+        return [ deleteAction, messageAction,emailAction]
+    }
     
 }
 

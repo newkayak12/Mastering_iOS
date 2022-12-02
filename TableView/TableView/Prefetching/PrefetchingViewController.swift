@@ -1,26 +1,3 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class PrefetchingViewController: UIViewController {
@@ -30,6 +7,7 @@ class PrefetchingViewController: UIViewController {
     
     lazy var refreshControl: UIRefreshControl = { [weak self] in
         let control = UIRefreshControl()
+        control.tintColor = self?.view.tintColor
         return control
     }()
     
@@ -44,6 +22,7 @@ class PrefetchingViewController: UIViewController {
             
             DispatchQueue.main.async {
                 strongSelf.listTableView.reloadData()
+                strongSelf.listTableView.refreshControl?.endRefreshing()
             }
         }
     }
@@ -55,10 +34,27 @@ class PrefetchingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        listTableView.prefetchDataSource = self
+        listTableView.refreshControl = refreshControl //이러면 pull to refresh 활성화됨
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
     }
 }
 
+extension PrefetchingViewController: UITableViewDataSourcePrefetching{
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            downloadImage(at: indexPath.row)
+        }
+        print(#function, indexPaths)
+    }
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        print(#function, indexPaths)
+        for indexPath in indexPaths {
+            cancelDownload(at: indexPath.row)
+        }
+    }
+}
 
 
 extension PrefetchingViewController: UITableViewDataSource {

@@ -1,26 +1,3 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class ReorderingViewController: UIViewController {
@@ -99,12 +76,56 @@ extension ReorderingViewController: UITableViewDataSource {
             return nil
         }
     }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        var target: String? = nil
+        switch sourceIndexPath.section {
+            case 0:
+                target = firstList.remove(at: sourceIndexPath.row)
+            case 1:
+                target = secondList.remove(at: sourceIndexPath.row)
+            case 2:
+                target = thirdList.remove(at: sourceIndexPath.row)
+            default:
+                break;
+        }
+        guard let item = target else {return }
+        switch destinationIndexPath.section {
+            case 0:
+                firstList.insert(item, at: destinationIndexPath.row)
+            case 1:
+                secondList.insert(item, at: destinationIndexPath.row)
+            case 2:
+                thirdList.insert(item, at: destinationIndexPath.row)
+            default:
+                break;
+                
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
 }
 
 
 
 
 extension ReorderingViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        if proposedDestinationIndexPath.section == 0 {
+            return sourceIndexPath
+        }
+        return proposedDestinationIndexPath
+    }
     
 }
 

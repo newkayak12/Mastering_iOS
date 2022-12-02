@@ -10,6 +10,10 @@
 		7E8A8695293352F70019ECF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A8694293352F70019ECF6 /* AppDelegate.swift */; };
 		7E8A8697293382A60019ECF6 /* TimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A8696293382A60019ECF6 /* TimeTableViewCell.swift */; };
 		7E8A8699293385C50019ECF6 /* SharedCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A8698293385C50019ECF6 /* SharedCustomCell.xib */; };
+		7E8A869B2939BAA60019ECF6 /* CustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E8A869A2939BAA60019ECF6 /* CustomHeader.xib */; };
+		7E8A869D2939BBB60019ECF6 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A869C2939BBB60019ECF6 /* CustomHeaderView.swift */; };
+		7E8A869F2939EC000019ECF6 /* MyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A869E2939EC000019ECF6 /* MyTableViewController.swift */; };
+		7E8A86A12939ED6D0019ECF6 /* StaticCellsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A86A02939ED6D0019ECF6 /* StaticCellsTableViewController.swift */; };
 		7EB48BC429323FD500C1585B /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB48BC329323FD500C1585B /* SwitchTableViewCell.swift */; };
 		7EE4F32329334E1E00D52BA2 /* CustomAccessoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE4F32229334E1E00D52BA2 /* CustomAccessoryTableViewCell.swift */; };
 		AA0401B725EBA22300535A6A /* TableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA0401B625EBA22300535A6A /* TableViewController.storyboard */; };
@@ -64,6 +68,10 @@
 		7E8A8694293352F70019ECF6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E8A8696293382A60019ECF6 /* TimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewCell.swift; sourceTree = "<group>"; };
 		7E8A8698293385C50019ECF6 /* SharedCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCustomCell.xib; sourceTree = "<group>"; };
+		7E8A869A2939BAA60019ECF6 /* CustomHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomHeader.xib; sourceTree = "<group>"; };
+		7E8A869C2939BBB60019ECF6 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
+		7E8A869E2939EC000019ECF6 /* MyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewController.swift; sourceTree = "<group>"; };
+		7E8A86A02939ED6D0019ECF6 /* StaticCellsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticCellsTableViewController.swift; sourceTree = "<group>"; };
 		7EB48BC2293234DC00C1585B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7EB48BC329323FD500C1585B /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		7EE4F32229334E1E00D52BA2 /* CustomAccessoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAccessoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -132,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				AA0401B625EBA22300535A6A /* TableViewController.storyboard */,
+				7E8A869E2939EC000019ECF6 /* MyTableViewController.swift */,
 			);
 			path = TableViewController;
 			sourceTree = "<group>";
@@ -221,6 +230,8 @@
 			children = (
 				AAA1E1F425E3ACAD006BC597 /* HeaderAndFooter.storyboard */,
 				AA7CDBAA20ED8DB3004EFB9C /* HeaderAndFooterViewController.swift */,
+				7E8A869A2939BAA60019ECF6 /* CustomHeader.xib */,
+				7E8A869C2939BBB60019ECF6 /* CustomHeaderView.swift */,
 			);
 			path = SectionHeaderFooter;
 			sourceTree = "<group>";
@@ -303,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				AAA1E22525E3B0BD006BC597 /* StaticCells.storyboard */,
+				7E8A86A02939ED6D0019ECF6 /* StaticCellsTableViewController.swift */,
 			);
 			path = StaticCells;
 			sourceTree = "<group>";
@@ -419,6 +431,7 @@
 				AAA1E21C25E3B038006BC597 /* Reordering.storyboard in Resources */,
 				AAA1E1D625E3A98F006BC597 /* MultiSection.storyboard in Resources */,
 				AACF6A0620DA448400DE209C /* LaunchScreen.storyboard in Resources */,
+				7E8A869B2939BAA60019ECF6 /* CustomHeader.xib in Resources */,
 				AAA1E1DB25E3AA12006BC597 /* Separator.storyboard in Resources */,
 				AAA1E20425E3ADA9006BC597 /* SingleSelection.storyboard in Resources */,
 				AAA1E1E025E3AA89006BC597 /* TableViewCell.storyboard in Resources */,
@@ -460,6 +473,7 @@
 				AA62FF7120EE5A9200C27EF0 /* SectionIndexViewController.swift in Sources */,
 				AAE2BD3220EFF3FC00FD64F1 /* HeaderFooterViewViewController.swift in Sources */,
 				AA5016F220EC098D00F82883 /* CustomCellViewController.swift in Sources */,
+				7E8A869F2939EC000019ECF6 /* MyTableViewController.swift in Sources */,
 				AA871A4520E331EA004E2E8B /* SeparatorViewController.swift in Sources */,
 				AA7CDBAB20ED8DB3004EFB9C /* HeaderAndFooterViewController.swift in Sources */,
 				AA84F76520E22A96004DF711 /* PhotosSetting.swift in Sources */,
@@ -468,8 +482,10 @@
 				AA0880EE20EF0BA6004BCAEA /* ReorderingViewController.swift in Sources */,
 				AA0880E420EEA136004BCAEA /* Products.swift in Sources */,
 				AA0880EC20EF05CB004BCAEA /* RowActionViewController.swift in Sources */,
+				7E8A86A12939ED6D0019ECF6 /* StaticCellsTableViewController.swift in Sources */,
 				AA0880E620EEA301004BCAEA /* SingleSelectionViewController.swift in Sources */,
 				7E8A8695293352F70019ECF6 /* AppDelegate.swift in Sources */,
+				7E8A869D2939BBB60019ECF6 /* CustomHeaderView.swift in Sources */,
 				AAA1E24B25E3F832006BC597 /* SceneDelegate.swift in Sources */,
 				7EB48BC429323FD500C1585B /* SwitchTableViewCell.swift in Sources */,
 				AAE2BD2E20EFC84D00FD64F1 /* PrefetchingViewController.swift in Sources */,
