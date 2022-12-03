@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E8A86A3293B12060019ECF6 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A86A2293B12060019ECF6 /* ColorCollectionViewCell.swift */; };
+		7E8A86A5293B1A0A0019ECF6 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A86A4293B1A0A0019ECF6 /* HeaderCollectionReusableView.swift */; };
+		7E8A86A7293B1B620019ECF6 /* FooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A86A6293B1B620019ECF6 /* FooterCollectionReusableView.swift */; };
 		AA5B472321078E58007AC6A8 /* CustomCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B472221078E58007AC6A8 /* CustomCellViewController.swift */; };
 		AA5B47272107BCFA007AC6A8 /* SupplementaryViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B47262107BCFA007AC6A8 /* SupplementaryViewViewController.swift */; };
 		AA63664B25E546B300C68889 /* ColorList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA63664A25E546B300C68889 /* ColorList.storyboard */; };
@@ -36,6 +39,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E8A86A2293B12060019ECF6 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
+		7E8A86A4293B1A0A0019ECF6 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		7E8A86A6293B1B620019ECF6 /* FooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		AA5B472221078E58007AC6A8 /* CustomCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellViewController.swift; sourceTree = "<group>"; };
 		AA5B47262107BCFA007AC6A8 /* SupplementaryViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementaryViewViewController.swift; sourceTree = "<group>"; };
 		AA63664A25E546B300C68889 /* ColorList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ColorList.storyboard; sourceTree = "<group>"; };
@@ -100,6 +106,7 @@
 			children = (
 				AA63665225E5477200C68889 /* CustomCell.storyboard */,
 				AA5B472221078E58007AC6A8 /* CustomCellViewController.swift */,
+				7E8A86A2293B12060019ECF6 /* ColorCollectionViewCell.swift */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -118,6 +125,8 @@
 			children = (
 				AA63665B25E5483600C68889 /* SupplementaryView.storyboard */,
 				AA5B47262107BCFA007AC6A8 /* SupplementaryViewViewController.swift */,
+				7E8A86A4293B1A0A0019ECF6 /* HeaderCollectionReusableView.swift */,
+				7E8A86A6293B1B620019ECF6 /* FooterCollectionReusableView.swift */,
 			);
 			path = SupplementaryView;
 			sourceTree = "<group>";
@@ -288,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E8A86A5293B1A0A0019ECF6 /* HeaderCollectionReusableView.swift in Sources */,
 				AAC8D0302106790A0040D7CA /* ColorListViewController.swift in Sources */,
 				AADA67D725E5128D00B7C82D /* SceneDelegate.swift in Sources */,
 				AA5B472321078E58007AC6A8 /* CustomCellViewController.swift in Sources */,
@@ -297,8 +307,10 @@
 				AAB9670E2105493B0078FCA8 /* SelfSizingCellViewController.swift in Sources */,
 				AA87B34D2109745800BFF504 /* PrefetchingViewController.swift in Sources */,
 				AA87B345210928F000BFF504 /* EditViewController.swift in Sources */,
+				7E8A86A7293B1B620019ECF6 /* FooterCollectionReusableView.swift in Sources */,
 				AA87B34B210973D200BFF504 /* Landscape.swift in Sources */,
 				AA87B34721092D8200BFF504 /* EditingHeaderCollectionReusableView.swift in Sources */,
+				7E8A86A3293B12060019ECF6 /* ColorCollectionViewCell.swift in Sources */,
 				AAB966FC210543350078FCA8 /* AppDelegate.swift in Sources */,
 				AAB967132105565C0078FCA8 /* FlowLayoutViewController.swift in Sources */,
 				AAB9671121054BB40078FCA8 /* Color.swift in Sources */,
