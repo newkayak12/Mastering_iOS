@@ -38,6 +38,9 @@
                                         <size key="customSize" width="100" height="100"/>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="RFD-Db-SVC" id="Oq4-P2-Wba"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Agd-dy-bBg"/>
