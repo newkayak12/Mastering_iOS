@@ -1,70 +1,64 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
-import UIKit
+ import UIKit
 
 class ViewManagementViewController: UIViewController {
     
     var grayView: UIView?
     
+    @IBOutlet weak var redView: UIView!
+    
+    @IBOutlet weak var greenView: UIView!
+    
+    @IBOutlet weak var blueView: UIView!
+    
     
     func addRandomView() {
-        
+        let v = generateRandomView()
+        view.addSubview(v)
+        //View는 subView를 배열로 관리
     }
     
     
     func insertRandomViewToBack() {
+        let v = generateRandomView()
+        view.insertSubview(v, at: 0)//가장 앞
         
     }
     
     
     func removeTopmostRandomView() {
-        
+        let topmostRandomView = view.subviews.reversed().first{ $0.tag > 0}
+        topmostRandomView?.removeFromSuperview()
     }
     
     
     func bringRedViewToFront() {
-        
+        view.bringSubview(toFront: redView)
     }
     
     
     func sendRedViewToBack() {
-        
+        view.sendSubview(toBack: redView)
     }
     
     
     func switchGreenViewWithBlueView() {
-        
+        print(#function)
+        guard let greenViewIndex = view.subviews.firstIndex(of: greenView) else {return}
+        guard let blueViewIndex = view.subviews.firstIndex(of: blueView) else {return}
+        view.exchangeSubview(at: greenViewIndex, withSubviewAt: blueViewIndex)
     }
     
     
     func addGrayViewToRedView() {
-        
+        grayView = generateGrayView()
+        redView.addSubview(grayView!)
     }
     
     
     func moveGrayViewToRootView() {
-        
+        if let grayView = grayView {
+            view.addSubview(grayView)
+        }
     }
     
     

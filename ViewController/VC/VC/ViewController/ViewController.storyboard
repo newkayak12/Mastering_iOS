@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cDu-Wj-iiu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cDu-Wj-iiu">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="c0v-1O-W4i">
             <objects>
-                <viewController title="View Controller" id="cDu-Wj-iiu" sceneMemberID="viewController">
+                <viewController title="View Controller" id="cDu-Wj-iiu" customClass="MyViewController" customModule="VC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OFm-Rt-JxD">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,10 +23,16 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLx-9Q-QnA">
                                         <rect key="frame" x="0.0" y="0.0" width="290" height="65"/>
                                         <state key="normal" title="Storyboard"/>
+                                        <connections>
+                                            <segue destination="zL5-Xd-dLn" kind="show" id="Vow-nU-Qst"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibO-mf-zvq">
                                         <rect key="frame" x="0.0" y="85" width="290" height="65"/>
                                         <state key="normal" title="Manual"/>
+                                        <connections>
+                                            <action selector="fromCode:" destination="cDu-Wj-iiu" eventType="touchUpInside" id="79c-Qd-VAG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -47,6 +53,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CxJ-AA-VdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1714" y="20"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tww-kr-tEE">
+            <objects>
+                <viewController id="zL5-Xd-dLn" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S3l-yL-IeH">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Hga-B6-pCI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0Ma-9v-Sh2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ema-gx-PGp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2602" y="-272"/>
         </scene>
     </scenes>
     <resources>

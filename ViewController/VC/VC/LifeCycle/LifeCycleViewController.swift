@@ -1,28 +1,15 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
-
+/**
+    init ->
+                viewDidLoad (딱 한 번만 호출 -> outlet, action 모두 연결됨)
+                                                                                *******반복되어 호출될 수도 있음
+                viewWillAppear (rootview가 view에 추가되기 직전)
+                viewDidAppear  (view에 rootView 추가)
+                viewWillDisappear (rootView 사라지기 전)
+                viewDidDisappear (rootView 사라지고 다른 rootView가 보일 수도
+ 
+                                                                            -> deinit
+ */
 class LifeCycleViewController: UIViewController {
     
     @IBAction func showAlert(_ sender: Any) {

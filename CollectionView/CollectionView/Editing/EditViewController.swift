@@ -1,26 +1,3 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class EditViewController: UIViewController {
@@ -33,26 +10,68 @@ class EditViewController: UIViewController {
     
     
     func emptySelectedList() {
-        
+        selectedList.removeAll()
+//        listCollectionView.deleteItems(at: <#T##[IndexPath]#>)
+        let targetSection = IndexSet(integer: 0)
+        listCollectionView.reloadSections(targetSection)
     }
     
     
     func insertSection() {
+        let sectionData = MaterialColorDataSource.Section()
+        colorList.insert(sectionData, at: 0)
         
+        let targetSection = IndexSet(integer: 1)
+        listCollectionView.insertSections(targetSection)
     }
     
     
     func deleteSecondSection() {
+        colorList.remove(at: 0)
         
+        let targetSection = IndexSet(integer: 1)
+        listCollectionView.deleteSections(targetSection)
     }
     
     
     func moveSecondSectionToThird() {
+        let target = colorList.remove(at: 0)
+        colorList.insert(target, at: 1)
+        
+        
+        listCollectionView.moveSection(1, toSection: 2)
         
     }
     
     
     func performBatchUpdates() {
+        let deleteIndexPaths = (1 ..< 3).compactMap { _ in
+            Int.random(in: 0 ..< colorList[0].colors.count)
+        }.sorted(by: >)
+            .map { IndexPath(item: $0, section: 1)}
+        
+        let insertIndexPaths = (0 ..< 4).compactMap { _ in
+            Int.random(in: 0 ..< colorList[0].colors.count)
+        }.sorted(by: <).map { IndexPath(item: $0, section: 1)
+        }
+        /**
+         삭제, 추가 순서 중요
+         삭제 -> 추가
+         셀 삭제 하는 경우 내림차순으로 해야 (뒤에서 부터 삭제)
+         셀 추가 하는 경우 오름차순으로 해야 (앞에서 부터 추가)
+         */
+        deleteIndexPaths.forEach { colorList[0].colors.remove(at: $0.item) }
+        insertIndexPaths.forEach { colorList[0].colors.insert(UIColor.random, at: $0.item) }
+        
+        
+//        listCollectionView.deleteItems(at: deleteIndexPaths)
+//        listCollectionView.insertItems(at: insertIndexPaths)
+        //이렇게 편집 메소드 연달아 실행하면 perfomrBatch로
+        
+        listCollectionView.performBatchUpdates {
+            listCollectionView.deleteItems(at: deleteIndexPaths)
+            listCollectionView.insertItems(at: insertIndexPaths)
+        }
         
     }
     
@@ -68,7 +87,20 @@ class EditViewController: UIViewController {
 
 extension EditViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if indexPath.section == 0 {
+            selectedList.remove(at: indexPath.item)
+            collectionView.deleteItems(at: [indexPath])
+            ///항상 원본 데이터 업데이트하고 collectionData 업데이트
+        } else {
+            let deleted = colorList[indexPath.section - 1].colors.remove(at: indexPath.item)
+            //collectionView.deleteItems(at: [indexPath])
+            
+            let targetIndexPath = IndexPath(item: selectedList.count, section: 0)
+            selectedList.append(deleted)
+            //collectionView.insertItems(at: [targetIndexPath])
+            
+            collectionView.moveItem(at: indexPath, to: targetIndexPath)
+        }
     }
 }
 

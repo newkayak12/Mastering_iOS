@@ -1,32 +1,13 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class PrefetchingViewController: UIViewController {
     
     @IBOutlet weak var listCollectionView: UICollectionView!
     
+    /**
+     cellPrefetching
+     dataPrefetching
+     */
     
     lazy var refreshControl: UIRefreshControl = { [weak self] in
         let control = UIRefreshControl()
@@ -55,12 +36,28 @@ class PrefetchingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        listCollectionView.prefetchDataSource = self
         
     }
 }
 
-
+extension PrefetchingViewController: UICollectionViewDataSourcePrefetching{
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            downloadImage(at: indexPath.item)
+        }
+        print(#function, indexPaths)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        print(#function, indexPaths)
+        for indexPath in indexPaths {
+            cancelDownload(at: indexPath.item)
+        }
+    }
+    
+    
+}
 
 extension PrefetchingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -84,7 +81,17 @@ extension PrefetchingViewController: UICollectionViewDataSource {
     }
 }
 
-
+extension PrefetchingViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let imageView = cell.viewWithTag(100) as? UIImageView {
+            if let image = list[indexPath.row].image {
+                imageView.image = image
+            } else {
+                imageView.image = nil
+            }
+        }
+    }
+}
 
 extension PrefetchingViewController {
     func downloadImage(at index: Int) {
