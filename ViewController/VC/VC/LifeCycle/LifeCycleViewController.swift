@@ -2,7 +2,7 @@ import UIKit
 /**
     init ->
                 viewDidLoad (딱 한 번만 호출 -> outlet, action 모두 연결됨)
-                                                                                *******반복되어 호출될 수도 있음
+                                                                                *******반복되어 호출될 수도 있음 ⬇️
                 viewWillAppear (rootview가 view에 추가되기 직전)
                 viewDidAppear  (view에 rootView 추가)
                 viewWillDisappear (rootView 사라지기 전)

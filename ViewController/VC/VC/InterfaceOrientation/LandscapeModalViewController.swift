@@ -1,26 +1,3 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 import AVFoundation
 
@@ -31,7 +8,36 @@ class LandscapeModalViewController: UIViewController {
     
     @IBOutlet weak var playerView: PlayerView!
     
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
+        return .landscapeLeft
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        return .all
+    }
     
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        //회전이벤트시 여기 호출됨
+        //size, dark, light mode 등이 변해야함
+        //ipad는 size가 회전해도 바뀌지 않음
+        //그래서 rootViewframe으로 파악하는 것이 좋음
+        print(newCollection.verticalSizeClass.description)
+        switch newCollection.verticalSizeClass {
+            case .regular:
+                closeButton.backgroundColor = UIColor.systemRed.withAlphaComponent(0.5)
+            default:
+                closeButton.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+        }
+    }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        //rootView frame 업데이트 되기 직전에 실행
+        if size.height > size.width {
+            closeButton.backgroundColor = UIColor.systemRed.withAlphaComponent(0.5)
+        } else {
+            closeButton.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.5)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
