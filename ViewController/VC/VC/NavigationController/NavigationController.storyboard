@@ -562,7 +562,7 @@ using</string>
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="pIa-9f-HUc" kind="unwind" unwindAction="unwindToFirst:" id="6Fc-Fu-Rb9"/>
+                                                            <segue destination="pIa-9f-HUc" kind="unwind" unwindAction="unwindToFirst:" id="PYe-f4-pxW"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -598,7 +598,7 @@ using</string>
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="pIa-9f-HUc" kind="unwind" unwindAction="unwindToThird:" id="FCo-jC-1Hk"/>
+                                                            <segue destination="pIa-9f-HUc" kind="unwind" unwindAction="unwindToThird:" id="2z4-dd-ycx"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
