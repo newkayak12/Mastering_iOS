@@ -38,7 +38,11 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Second"
         
+        //Back버튼 규칙
+        //사용자가 직접 버튼을 추가하면 back 대신 추가
+        //직접 버튼을 추가하지 않았지만 이전 viewController에 backBarItem도 없고 rootViewContorller가 아니라면 back 표시
     }
 }
 

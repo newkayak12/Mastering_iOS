@@ -1,43 +1,45 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
 
 import UIKit
 
 class FirstTabViewController: UIViewController {
     
     @IBAction func selectSecondTab(_ sender: Any) {
-        
+     //선택할 child를 지정
+        guard let secondChild = tabBarController?.viewControllers?[1] else {return}
+        tabBarController?.selectedViewController = secondChild
     }
     
     
     @IBAction func selectThirdTab(_ sender: Any) {
-        
+     //선택할 탭을 인덱스로 지정
+        tabBarController?.selectedIndex = 2
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBarItem.title = "First"
+        tabBarItem.badgeValue = "HOT"
+        tabBarItem.badgeColor = .blue
+        
+        let standard = UITabBarAppearance()
+        standard.backgroundColor = view.backgroundColor
+        let stacked = UITabBarItemAppearance()
+        stacked.selected.iconColor = .white
+        stacked.selected.titleTextAttributes = [.foregroundColor:UIColor.white]
+        stacked.normal.iconColor = .white.withAlphaComponent(0.5)
+        stacked.normal.titleTextAttributes = [.foregroundColor: UIColor.white.withAlphaComponent(0.5)]
+        
+        standard.stackedLayoutAppearance = stacked
+        standard.inlineLayoutAppearance = stacked
+        standard.compactInlineLayoutAppearance = stacked
+        
+        
+        tabBarItem.standardAppearance = standard
+        if #available(iOS 15.0, *) {
+            tabBarItem.scrollEdgeAppearance = standard
+        }
         
     }
 }

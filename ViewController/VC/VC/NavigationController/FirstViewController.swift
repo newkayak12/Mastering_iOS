@@ -16,9 +16,18 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let leftButton = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = leftButton
+        
+        let titleButton = UIBarButtonItem(title: "Action", style: .done, target: nil, action: nil)
+        let toggleSwitch = UISwitch(frame: .zero)
+        let switchButton = UIBarButtonItem(customView: toggleSwitch)
+        navigationItem.rightBarButtonItems = [switchButton, titleButton]
         
         
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Go Back", style: .plain, target: nil, action: nil)
     }
+    
 }
 
 
