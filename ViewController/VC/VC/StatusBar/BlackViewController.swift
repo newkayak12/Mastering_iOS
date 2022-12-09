@@ -24,7 +24,9 @@
 import UIKit
 
 class BlackViewController: UIViewController {
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .darkContent
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

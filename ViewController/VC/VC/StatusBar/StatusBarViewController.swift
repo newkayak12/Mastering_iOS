@@ -25,14 +25,23 @@ import UIKit
 
 class StatusBarViewController: UIViewController {
     
-    
-    @IBAction func toggleVisibility(_ sender: Any) {
-        
+    var hidden = false
+    override var prefersStatusBarHidden: Bool{
+        return hidden
     }
     
+    @IBAction func toggleVisibility(_ sender: Any) {
+        hidden.toggle()
+        setNeedsStatusBarAppearanceUpdate()
+    }
     
+    var style = UIStatusBarStyle.default
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return style
+    }
     @IBAction func toggleStyle(_ sender: Any) {
-        
+        style = style == .default ? .lightContent : style == .lightContent ? .darkContent : .default
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     

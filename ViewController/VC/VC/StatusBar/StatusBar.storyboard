@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gpn-HZ-19w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Gpn-HZ-19w">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,14 +24,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
                                         <state key="normal" title="White Background"/>
                                         <connections>
-                                            <segue destination="dgg-fR-TLs" kind="presentation" id="h6R-Ju-9Qj"/>
+                                            <segue destination="dgg-fR-TLs" kind="presentation" modalPresentationStyle="automatic" id="h6R-Ju-9Qj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxU-hp-biA">
                                         <rect key="frame" x="0.0" y="50" width="126" height="30"/>
                                         <state key="normal" title="Black Background"/>
                                         <connections>
-                                            <segue destination="YFE-13-MJS" kind="presentation" id="Cfx-E7-bE3"/>
+                                            <segue destination="YFE-13-MJS" kind="presentation" modalPresentationStyle="fullScreen" id="Cfx-E7-bE3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9Y-rl-GtD">
@@ -70,11 +70,11 @@
             <objects>
                 <viewController id="dgg-fR-TLs" customClass="WhiteViewController" customModule="VC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eMc-2Q-82X">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mew-HQ-jcF">
-                                <rect key="frame" x="16" y="696" width="358" height="40"/>
+                                <rect key="frame" x="16" y="727" width="358" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Kax-07-3CQ"/>
                                 </constraints>
@@ -84,17 +84,31 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WpS-eg-8dR">
-                                <rect key="frame" x="152.66666666666666" y="647" width="85" height="30"/>
-                                <state key="normal" title="Toggle Style"/>
+                                <rect key="frame" x="141" y="678" width="108" height="30"/>
+                                <state key="normal" title="Toggle Visibility"/>
+                                <connections>
+                                    <action selector="toggleVisibility:" destination="dgg-fR-TLs" eventType="touchUpInside" id="u0U-wc-TLj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMT-3T-uwJ">
+                                <rect key="frame" x="137" y="623" width="118" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Toggle Style"/>
+                                <connections>
+                                    <action selector="toggleStyle:" destination="dgg-fR-TLs" eventType="touchUpInside" id="wYd-Gn-LDS"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ygi-8p-Qvj"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstItem="ygi-8p-Qvj" firstAttribute="bottom" secondItem="mew-HQ-jcF" secondAttribute="bottom" constant="20" id="13a-Dy-vl4"/>
+                            <constraint firstItem="EMT-3T-uwJ" firstAttribute="leading" secondItem="ygi-8p-Qvj" secondAttribute="leading" constant="137" id="EE5-fF-pM3"/>
                             <constraint firstItem="WpS-eg-8dR" firstAttribute="centerX" secondItem="mew-HQ-jcF" secondAttribute="centerX" id="bXA-k4-mqk"/>
                             <constraint firstItem="mew-HQ-jcF" firstAttribute="top" secondItem="WpS-eg-8dR" secondAttribute="bottom" constant="19" id="fLB-8t-dJt"/>
+                            <constraint firstItem="WpS-eg-8dR" firstAttribute="top" secondItem="EMT-3T-uwJ" secondAttribute="bottom" constant="20" id="mji-mi-Xgh"/>
                             <constraint firstItem="ygi-8p-Qvj" firstAttribute="trailing" secondItem="mew-HQ-jcF" secondAttribute="trailing" constant="16" id="nW0-Ka-Ovi"/>
+                            <constraint firstItem="ygi-8p-Qvj" firstAttribute="trailing" secondItem="EMT-3T-uwJ" secondAttribute="trailing" constant="135" id="qzh-Ph-3fb"/>
                             <constraint firstItem="mew-HQ-jcF" firstAttribute="leading" secondItem="ygi-8p-Qvj" secondAttribute="leading" constant="16" id="wCg-Is-rDD"/>
                         </constraints>
                     </view>
@@ -110,11 +124,11 @@
             <objects>
                 <viewController id="YFE-13-MJS" customClass="BlackViewController" customModule="VC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WqO-MD-vBU">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNz-Qv-Ipj">
-                                <rect key="frame" x="16" y="696" width="358" height="40"/>
+                                <rect key="frame" x="16" y="750" width="358" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bVg-gg-P1Q"/>
                                 </constraints>
@@ -145,6 +159,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
