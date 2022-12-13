@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E163C382948A2850083407D /* SimplePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E163C372948A2850083407D /* SimplePresentationController.swift */; };
+		7E163C3C2948AEF00083407D /* ZoomAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E163C3B2948AEF00083407D /* ZoomAnimationController.swift */; };
 		AA1DBA69213D33AA00D8636E /* ViewTransition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA1DBA68213D33AA00D8636E /* ViewTransition.storyboard */; };
 		AA1DBA6B213D33C000D8636E /* ViewTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1DBA6A213D33C000D8636E /* ViewTransitionViewController.swift */; };
 		AA308EFF213F51BA006FD282 /* CustomTransition.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA308EFE213F51BA006FD282 /* CustomTransition.storyboard */; };
@@ -30,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E163C372948A2850083407D /* SimplePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePresentationController.swift; sourceTree = "<group>"; };
+		7E163C3B2948AEF00083407D /* ZoomAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomAnimationController.swift; sourceTree = "<group>"; };
 		AA1DBA68213D33AA00D8636E /* ViewTransition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewTransition.storyboard; sourceTree = "<group>"; };
 		AA1DBA6A213D33C000D8636E /* ViewTransitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTransitionViewController.swift; sourceTree = "<group>"; };
 		AA308EFE213F51BA006FD282 /* CustomTransition.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomTransition.storyboard; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 				AA308EFE213F51BA006FD282 /* CustomTransition.storyboard */,
 				AA308F00213F51CF006FD282 /* CustomTransitionViewController.swift */,
 				AA6CA503213F56650018ED50 /* ImageViewController.swift */,
+				7E163C3B2948AEF00083407D /* ZoomAnimationController.swift */,
 			);
 			path = CustomTransition;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			children = (
 				AA883EDA213EF55900DFB871 /* CustomPresentation.storyboard */,
 				AA883EDC213EF56400DFB871 /* CustomPresentationViewController.swift */,
+				7E163C372948A2850083407D /* SimplePresentationController.swift */,
 			);
 			path = CustomPresentation;
 			sourceTree = "<group>";
@@ -244,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA1DBA6B213D33C000D8636E /* ViewTransitionViewController.swift in Sources */,
+				7E163C382948A2850083407D /* SimplePresentationController.swift in Sources */,
 				AA839682213E4D2A0067B36F /* TransitionStyleViewController.swift in Sources */,
 				AA83967E213E3C8B0067B36F /* PresentationContextViewController.swift in Sources */,
 				AA308F01213F51CF006FD282 /* CustomTransitionViewController.swift in Sources */,
@@ -251,6 +258,7 @@
 				AA83968A213E7CDB0067B36F /* PresentationViewController.swift in Sources */,
 				AA839686213E4E6F0067B36F /* PresentationStyleViewController.swift in Sources */,
 				AA83968C213E80680067B36F /* ModalViewController.swift in Sources */,
+				7E163C3C2948AEF00083407D /* ZoomAnimationController.swift in Sources */,
 				AA6CA504213F56650018ED50 /* ImageViewController.swift in Sources */,
 				AA883EDD213EF56400DFB871 /* CustomPresentationViewController.swift in Sources */,
 			);
@@ -400,7 +408,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6GG6YUX8VB;
 				INFOPLIST_FILE = Transition/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -421,7 +429,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6GG6YUX8VB;
 				INFOPLIST_FILE = Transition/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

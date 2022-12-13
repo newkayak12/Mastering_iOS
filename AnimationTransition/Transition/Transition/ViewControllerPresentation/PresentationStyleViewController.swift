@@ -1,25 +1,3 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class PresentationStyleViewController: UIViewController {
@@ -28,7 +6,13 @@ class PresentationStyleViewController: UIViewController {
       let sb = UIStoryboard(name: "Presentation", bundle: nil)
       let modalVC = sb.instantiateViewController(withIdentifier: "ModalViewController")
       
-      
+       let style = UIModalPresentationStyle(rawValue: sender.tag) ?? .fullScreen
+       modalVC.modalPresentationStyle = style
+       
+       if let pc = modalVC.popoverPresentationController {
+           pc.sourceView = sender
+           modalVC.preferredContentSize = CGSize(width: 500, height: 300)
+       }
       printPresentationStyle(for: modalVC)
       present(modalVC, animated: true, completion: nil)
    }
@@ -55,18 +39,24 @@ extension PresentationStyleViewController {
       
       switch vc.modalPresentationStyle {
       case .fullScreen:
+              //presenting view controller를 제거, 추가
          print("Full Screen")
       case .pageSheet:
+              //ipad에서 유효 넓은 크기의 모달
          print("Page Sheet")
       case .formSheet:
+              //일반적인 모달
          print("Form Sheet")
       case .currentContext:
          print("Current Sheet")
       case .overFullScreen:
+              //presenting view controller를 제거, 추가 X
          print("Over Full Screen")
       case .overCurrentContext:
+              //presenting view controller를 제거, 추가 X
          print("Over Current Context")
       case .popover:
+              //iPad에서는 barbutton등이 있어야
          print("Popover")
       default:
          print("")
