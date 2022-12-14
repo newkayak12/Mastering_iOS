@@ -18,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7EBFDB3A2949ED2200E593B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AA5BDEC620BC8DA500F5CD17 /* NotificationCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterViewController.swift; sourceTree = "<group>"; };
 		AA5BDEC820BC8DBA00F5CD17 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		AA5BDECC20BC900600F5CD17 /* SystemNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemNotificationViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +70,7 @@
 				AAF10D3A20BC899400CFE879 /* Assets.xcassets */,
 				AAF10D3C20BC899400CFE879 /* LaunchScreen.storyboard */,
 				AAF10D3F20BC899400CFE879 /* Info.plist */,
+				7EBFDB3A2949ED2200E593B7 /* README.md */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
