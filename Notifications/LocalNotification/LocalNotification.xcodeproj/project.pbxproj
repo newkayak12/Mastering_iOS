@@ -26,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E73B3A7294BE51100246A8E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AA2704B020C218BD0057CD39 /* NotificationContentExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationContentExtensionViewController.swift; sourceTree = "<group>"; };
 		AA484EE320BF3B7200B6DECA /* CustomSoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSoundViewController.swift; sourceTree = "<group>"; };
 		AA484EE520BF3BA500B6DECA /* AttachmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +86,7 @@
 		AA5BDECE20BC906F00F5CD17 = {
 			isa = PBXGroup;
 			children = (
+				7E73B3A7294BE51100246A8E /* README.md */,
 				AA5BDED920BC906F00F5CD17 /* LocalNotification */,
 				AA5BDED820BC906F00F5CD17 /* Products */,
 			);

@@ -1,0 +1,11 @@
+{
+  "aps":{
+    "alert": {
+      "title": "Hello",
+      "body":"Notification Hub test notification"
+    },
+    "badge": 123,
+    "sound": "default"
+  },
+  "data": "Have a nice day :)"
+}

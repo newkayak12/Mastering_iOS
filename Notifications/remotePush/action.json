@@ -1,0 +1,8 @@
+{
+  "aps":{
+    "alert": "Notification Hub test notification",
+    "badge": 123,
+    "sound": "default",
+    "category": "CATEGORY_FRIEND_REQUEST"
+  },
+}

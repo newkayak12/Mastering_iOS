@@ -67,23 +67,3 @@ class AttachmentsViewController: UIViewController {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
