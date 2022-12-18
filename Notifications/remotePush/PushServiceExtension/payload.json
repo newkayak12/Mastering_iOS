@@ -1,0 +1,13 @@
+{
+    "aps":{
+        "mutable-content": 1,
+        "alert":{
+            "title":"Hello",
+            "body": "Have a nice day :)"
+        }
+        "badge": 1,
+        "sound": "default",
+        "url": "https://goo.gl/asldk"
+        "enc-data" : "Base64EndcodedLetter"
+    }
+}

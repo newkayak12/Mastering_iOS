@@ -36,6 +36,8 @@
 		7E73B46E294C869900246A8E /* silentPush.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E73B46C294C869900246A8E /* silentPush.json */; };
 		7E73B470294C8C5000246A8E /* action.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E73B46F294C8C5000246A8E /* action.json */; };
 		7E73B471294C8C5000246A8E /* action.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E73B46F294C8C5000246A8E /* action.json */; };
+		7E73B479294E91DF00246A8E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E73B478294E91DF00246A8E /* NotificationService.swift */; };
+		7E73B47D294E91DF00246A8E /* PushServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7E73B476294E91DF00246A8E /* PushServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7E73B411294BF0C300246A8E;
 			remoteInfo = remotePush;
+		};
+		7E73B47B294E91DF00246A8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E73B40A294BF0C300246A8E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E73B475294E91DF00246A8E;
+			remoteInfo = PushServiceExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -76,6 +85,17 @@
 				7E73B45D294BF14F00246A8E /* WindowsAzureMessaging.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E73B481294E91DF00246A8E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7E73B47D294E91DF00246A8E /* PushServiceExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -103,6 +123,10 @@
 		7E73B469294C82EC00246A8E /* pushRequest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pushRequest.json; sourceTree = "<group>"; };
 		7E73B46C294C869900246A8E /* silentPush.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = silentPush.json; sourceTree = "<group>"; };
 		7E73B46F294C8C5000246A8E /* action.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = action.json; sourceTree = "<group>"; };
+		7E73B476294E91DF00246A8E /* PushServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PushServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E73B478294E91DF00246A8E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		7E73B47A294E91DF00246A8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E73B482294E92DA00246A8E /* payload.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = payload.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +160,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7E73B473294E91DF00246A8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -149,6 +180,7 @@
 				7E73B414294BF0C300246A8E /* remotePush */,
 				7E73B42B294BF0C400246A8E /* remotePushTests */,
 				7E73B435294BF0C400246A8E /* remotePushUITests */,
+				7E73B477294E91DF00246A8E /* PushServiceExtension */,
 				7E73B413294BF0C300246A8E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -160,6 +192,7 @@
 				7E73B428294BF0C400246A8E /* remotePushTests.xctest */,
 				7E73B432294BF0C400246A8E /* remotePushUITests.xctest */,
 				7E73B461294BF14F00246A8E /* remotePush_production.app */,
+				7E73B476294E91DF00246A8E /* PushServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,6 +232,16 @@
 			path = remotePushUITests;
 			sourceTree = "<group>";
 		};
+		7E73B477294E91DF00246A8E /* PushServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				7E73B478294E91DF00246A8E /* NotificationService.swift */,
+				7E73B47A294E91DF00246A8E /* Info.plist */,
+				7E73B482294E92DA00246A8E /* payload.json */,
+			);
+			path = PushServiceExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -210,10 +253,12 @@
 				7E73B40F294BF0C300246A8E /* Frameworks */,
 				7E73B410294BF0C300246A8E /* Resources */,
 				7E73B44E294BF10A00246A8E /* Embed Frameworks */,
+				7E73B481294E91DF00246A8E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7E73B47C294E91DF00246A8E /* PBXTargetDependency */,
 			);
 			name = remotePush;
 			productName = remotePush;
@@ -274,6 +319,23 @@
 			productReference = 7E73B461294BF14F00246A8E /* remotePush_production.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7E73B475294E91DF00246A8E /* PushServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E73B47E294E91DF00246A8E /* Build configuration list for PBXNativeTarget "PushServiceExtension" */;
+			buildPhases = (
+				7E73B472294E91DF00246A8E /* Sources */,
+				7E73B473294E91DF00246A8E /* Frameworks */,
+				7E73B474294E91DF00246A8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PushServiceExtension;
+			productName = PushServiceExtension;
+			productReference = 7E73B476294E91DF00246A8E /* PushServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -295,6 +357,9 @@
 						CreatedOnToolsVersion = 14.2;
 						TestTargetID = 7E73B411294BF0C300246A8E;
 					};
+					7E73B475294E91DF00246A8E = {
+						CreatedOnToolsVersion = 14.2;
+					};
 				};
 			};
 			buildConfigurationList = 7E73B40D294BF0C300246A8E /* Build configuration list for PBXProject "remotePush" */;
@@ -314,6 +379,7 @@
 				7E73B44F294BF14F00246A8E /* remotePush_production */,
 				7E73B427294BF0C400246A8E /* remotePushTests */,
 				7E73B431294BF0C400246A8E /* remotePushUITests */,
+				7E73B475294E91DF00246A8E /* PushServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -356,6 +422,13 @@
 				7E73B45A294BF14F00246A8E /* Assets.xcassets in Resources */,
 				7E73B45B294BF14F00246A8E /* Main.storyboard in Resources */,
 				7E73B46E294C869900246A8E /* silentPush.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E73B474294E91DF00246A8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +476,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7E73B472294E91DF00246A8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E73B479294E91DF00246A8E /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -415,6 +496,11 @@
 			isa = PBXTargetDependency;
 			target = 7E73B411294BF0C300246A8E /* remotePush */;
 			targetProxy = 7E73B433294BF0C400246A8E /* PBXContainerItemProxy */;
+		};
+		7E73B47C294E91DF00246A8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E73B475294E91DF00246A8E /* PushServiceExtension */;
+			targetProxy = 7E73B47B294E91DF00246A8E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -555,6 +641,7 @@
 		7E73B43D294BF0C400246A8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -583,6 +670,7 @@
 		7E73B43E294BF0C400246A8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -742,6 +830,56 @@
 			};
 			name = Release;
 		};
+		7E73B47F294E91DF00246A8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NL7TARX6W5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PushServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PushServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.remote.remotePush.PushServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7E73B480294E91DF00246A8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NL7TARX6W5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PushServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PushServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.remote.remotePush.PushServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -786,6 +924,15 @@
 			buildConfigurations = (
 				7E73B45F294BF14F00246A8E /* Debug */,
 				7E73B460294BF14F00246A8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E73B47E294E91DF00246A8E /* Build configuration list for PBXNativeTarget "PushServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E73B47F294E91DF00246A8E /* Debug */,
+				7E73B480294E91DF00246A8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
