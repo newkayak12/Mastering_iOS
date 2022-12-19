@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wl9-0Y-FPf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wl9-0Y-FPf">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="q2B-Qj-tLL">
-                                <rect key="frame" x="60.333333333333343" y="341" width="269.66666666666663" height="162.33333333333337"/>
+                                <rect key="frame" x="-16256.666666666666" y="341" width="32903.333333333336" height="162.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zac-Y0-gpN">
-                                        <rect key="frame" x="0.0" y="0.0" width="269.66666666666669" height="82.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="32903.333333333336" height="82.333333333333329"/>
                                         <string key="text">Present Split View Controller
 
 using</string>
@@ -30,10 +30,11 @@ using</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="UzG-7R-m91">
-                                        <rect key="frame" x="0.0" y="102.33333333333331" width="269.66666666666669" height="60"/>
+                                        <rect key="frame" x="0.0" y="102.33333333333331" width="32903.333333333336" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D6J-qi-xfD">
-                                                <rect key="frame" x="0.0" y="0.0" width="124.66666666666667" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="16441.666666666668" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemTealColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <state key="normal" title="Code"/>
                                                 <connections>
@@ -41,9 +42,13 @@ using</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07o-RI-zmw">
-                                                <rect key="frame" x="144.66666666666666" y="0.0" width="124.99999999999997" height="60"/>
+                                                <rect key="frame" x="16461.666666666664" y="0.0" width="16441.666666666664" height="60"/>
+                                                <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <state key="normal" title="Segue"/>
+                                                <connections>
+                                                    <segue destination="iCG-av-W51" kind="presentation" id="qQc-uX-Je3"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -62,21 +67,50 @@ using</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jpk-PS-aH0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-102" y="159"/>
+            <point key="canvasLocation" x="-112" y="182"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="IYb-EN-5kb">
+            <objects>
+                <navigationController id="CyH-Ek-Qhp" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i5x-aW-a0Z">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="tQV-XP-OGO" kind="relationship" relationship="rootViewController" id="nQm-CR-xFb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vjL-6p-puI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1588" y="-121"/>
+        </scene>
+        <!--Custom Split View Controller-->
+        <scene sceneID="gPK-KU-3CK">
+            <objects>
+                <splitViewController allowDoubleColumnStyle="YES" primaryBackgroundStyle="sidebar" id="iCG-av-W51" customClass="CustomSplitViewController" customModule="VC" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="CyH-Ek-Qhp" kind="relationship" relationship="masterViewController" id="W0h-Jr-lDO"/>
+                        <segue destination="jEy-P5-lGl" kind="relationship" relationship="detailViewController" id="rUD-zt-BQL"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6JY-wo-kpd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="679" y="182"/>
         </scene>
         <!--Color Detail View Controller-->
         <scene sceneID="yDL-tw-dTx">
             <objects>
                 <viewController storyboardIdentifier="ColorDetailViewController" id="jEy-P5-lGl" customClass="ColorDetailViewController" customModule="VC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FAd-NG-ZUf">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwt-vq-efR">
-                                <rect key="frame" x="16" y="59" width="358" height="731"/>
+                                <rect key="frame" x="16" y="71" width="358" height="696"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ax-4c-jYY">
-                                        <rect key="frame" x="0.0" y="651" width="358" height="80"/>
+                                        <rect key="frame" x="0.0" y="616" width="358" height="80"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zvh-1E-YvI">
                                             <rect key="frame" x="0.0" y="0.0" width="358" height="80"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,26 +160,26 @@ using</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FH-bd-h7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3385" y="855"/>
+            <point key="canvasLocation" x="1588" y="764"/>
         </scene>
         <!--Material Colors-->
         <scene sceneID="GBH-xZ-fzW">
             <objects>
                 <tableViewController storyboardIdentifier="ColorListTableViewController" id="tQV-XP-OGO" customClass="ColorListTableViewController" customModule="VC" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="X2w-ks-QZU">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="tz9-t9-djc" style="IBUITableViewCellStyleDefault" id="WaU-yH-CKD">
-                                <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WaU-yH-CKD" id="WVX-j0-vQd">
-                                    <rect key="frame" x="0.0" y="0.0" width="358.66666666666669" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="359.66666666666669" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tz9-t9-djc">
-                                            <rect key="frame" x="20" y="0.0" width="330.66666666666669" height="43.666667938232422"/>
+                                            <rect key="frame" x="20" y="0.0" width="331.66666666666669" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -153,6 +187,9 @@ using</string>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="jEy-P5-lGl" kind="showDetail" id="ULH-wf-mcW"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -171,12 +208,21 @@ using</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fyV-4j-qC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="hb1-EC-E9V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3385" y="71"/>
+            <point key="canvasLocation" x="2420" y="-122"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ULH-wf-mcW"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
