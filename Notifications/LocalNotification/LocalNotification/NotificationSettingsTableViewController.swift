@@ -1,25 +1,3 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 import UserNotifications
 
@@ -35,11 +13,65 @@ class NotificationSettingsTableViewController: UITableViewController {
    @IBOutlet weak var lockScreenLabel: UILabel!
    
    func update(from settings: UNNotificationSettings) {
-      
+       switch settings.authorizationStatus {
+       case .notDetermined:
+           authorizationStatusLabel.text = "Not Determined"
+       case .authorized:
+           authorizationStatusLabel.text = "Authorized"
+       case .denied:
+           authorizationStatusLabel.text = "Denied"
+       default:
+           break;
+       }
+       
+       switch settings.soundSetting {
+           case .disabled:
+               soundLabel.text = "Disalbed"
+           case .enabled:
+               soundLabel.text = "Enabled"
+           case .notSupported:
+               soundLabel.text = "Not Supported"
+           default:
+               break;
+       }
+       
+       badgeLabel.text = settings.badgeSetting.stringValue
+       lockScreenLabel.text = settings.lockScreenSetting.stringValue
+       notificationCenterLabel.text = settings.notificationCenterSetting.stringValue
+       alertLabel.text = settings.alertSetting.stringValue
+       
+       switch settings.alertStyle {
+            case .banner:
+                alertStyleLabel.text = "Banner"
+            case .alert:
+                alertStyleLabel.text = "Alert"
+            case .none:
+                alertStyleLabel.text = "None"
+            default:
+                break;
+       }
+       
+       if #available(iOS 11.0, *) {
+           switch settings.showPreviewsSetting {
+           case .always:
+               showPreviewsLabel.text = "Always"
+           case .whenAuthenticated:
+               showPreviewsLabel.text = "when Authenticated"
+           case .never:
+               showPreviewsLabel.text = "never"
+           default:
+               break;
+           }
+       }
+       
    }
    
    @objc func refresh() {
-      
+       UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+           DispatchQueue.main.async {
+               self.update(from: settings)
+           }
+       }
    }
    
    override func viewDidLoad() {
@@ -48,6 +80,20 @@ class NotificationSettingsTableViewController: UITableViewController {
       refresh()
       
       NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+       
+       UNUserNotificationCenter.current().getNotificationSettings { settins in
+           guard settins.authorizationStatus == .authorized else { return }
+           let content = UNMutableNotificationContent()
+           content.title = "Hello"
+           content.body = "Have a nice day:)"
+           content.sound = UNNotificationSound.default()
+           
+           let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+           let request = UNNotificationRequest(identifier: "HelloNoti", content: content, trigger: trigger)
+           
+           UNUserNotificationCenter.current().add(request) { (error) in print(error)}
+       }
+      
    }
 }
 

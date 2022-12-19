@@ -9,6 +9,7 @@ class NotificationContentExtensionViewController: UIViewController {
       content.title = "Hello"
       content.body = "Have a nice day :)"
       content.sound = UNNotificationSound.default()
+       content.categoryIdentifier = CategoryIdentifier.customUI
       
       guard let url = Bundle.main.url(forResource: "hello", withExtension: "png") else {
          return

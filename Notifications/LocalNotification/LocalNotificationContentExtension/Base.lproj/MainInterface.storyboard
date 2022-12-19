@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notification View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" userLabel="Notification View Controller" customClass="NotificationViewController" customModule="LocalNotificationContentExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Smw-Z8-KIU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PE9-vH-eXs">
+                                <rect key="frame" x="16" y="20" width="288" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYk-p3-bSt">
+                                <rect key="frame" x="16" y="52" width="288" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFs-bc-ckE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2BE-c3-nQJ"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="CFs-bc-ckE" firstAttribute="height" secondItem="Smw-Z8-KIU" secondAttribute="height" id="22J-Yz-vfz"/>
+                            <constraint firstItem="PE9-vH-eXs" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" constant="16" id="2Co-7c-RRg"/>
+                            <constraint firstItem="Smw-Z8-KIU" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" id="31n-2p-UEh"/>
+                            <constraint firstItem="2BE-c3-nQJ" firstAttribute="trailing" secondItem="KYk-p3-bSt" secondAttribute="trailing" constant="16" id="37j-jM-MYb"/>
+                            <constraint firstItem="2BE-c3-nQJ" firstAttribute="bottom" secondItem="Smw-Z8-KIU" secondAttribute="bottom" id="6Xk-da-AaU"/>
+                            <constraint firstItem="KYk-p3-bSt" firstAttribute="top" secondItem="PE9-vH-eXs" secondAttribute="bottom" constant="8" id="EgQ-Xp-Zjb"/>
+                            <constraint firstItem="PE9-vH-eXs" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" constant="20" id="R1m-Gr-ycV"/>
+                            <constraint firstItem="CFs-bc-ckE" firstAttribute="centerX" secondItem="Smw-Z8-KIU" secondAttribute="centerX" id="Tf8-WD-fnk"/>
+                            <constraint firstItem="CFs-bc-ckE" firstAttribute="width" secondItem="Smw-Z8-KIU" secondAttribute="width" id="YJb-jD-MXY"/>
+                            <constraint firstItem="Smw-Z8-KIU" firstAttribute="leading" secondItem="2BE-c3-nQJ" secondAttribute="leading" id="ZSu-s5-Ywk"/>
+                            <constraint firstItem="2BE-c3-nQJ" firstAttribute="trailing" secondItem="Smw-Z8-KIU" secondAttribute="trailing" id="cxS-tT-cqS"/>
+                            <constraint firstAttribute="trailing" secondItem="PE9-vH-eXs" secondAttribute="trailing" constant="16" id="oCS-lP-v1q"/>
+                            <constraint firstItem="CFs-bc-ckE" firstAttribute="centerY" secondItem="Smw-Z8-KIU" secondAttribute="centerY" id="pFB-Hn-tSu"/>
+                            <constraint firstItem="KYk-p3-bSt" firstAttribute="leading" secondItem="2BE-c3-nQJ" secondAttribute="leading" constant="16" id="vao-nN-Xlw"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="200"/>
+                    <connections>
+                        <outlet property="bodyLabel" destination="KYk-p3-bSt" id="MR8-wt-8bV"/>
+                        <outlet property="imageView" destination="Smw-Z8-KIU" id="kHd-4Q-Nex"/>
+                        <outlet property="titleLabel" destination="PE9-vH-eXs" id="DOv-6b-4W6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.29770992366412" y="-35.211267605633807"/>
+        </scene>
+    </scenes>
+</document>

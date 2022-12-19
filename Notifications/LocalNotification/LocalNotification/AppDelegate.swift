@@ -13,6 +13,7 @@ struct ActionIdentifier {
 
 struct CategoryIdentifier {
     static let imagePosting = "CATEGORY_IMAGE_POSTING"
+    static let customUI = "CATEGORY_CUSTOM_UI"
     private init() {}
 }
 
@@ -37,6 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let imagePostingCategory = UNNotificationCategory(identifier: CategoryIdentifier.imagePosting, actions: [likeAction, dislikeAction, unFollow, settingAction], intentIdentifiers: [], options: options)
         UNUserNotificationCenter.current().setNotificationCategories([imagePostingCategory])
        
+        let customUICategory = UNNotificationCategory(identifier: CategoryIdentifier.customUI, actions: [likeAction, dislikeAction], intentIdentifiers: [])
+        
+        if UNUserNotificationCenter.current().supportsContentExtensions {
+            UNUserNotificationCenter.current().setNotificationCategories([imagePostingCategory, customUICategory])
+        } else {
+            UNUserNotificationCenter.current().setNotificationCategories([imagePostingCategory])
+        }
+        
+        
+        
+        
+        
     }
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
    
