@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B5J-SA-wfK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B5J-SA-wfK">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebw-Di-2RZ">
-                                <rect key="frame" x="115" y="124" width="160" height="30"/>
+                                <rect key="frame" x="115" y="127" width="160" height="30"/>
                                 <state key="normal" title="Perform Custom Segue"/>
                                 <connections>
-                                    <segue destination="ggy-Xv-jtG" kind="show" id="6S3-Sh-O6v"/>
+                                    <segue destination="ggy-Xv-jtG" kind="custom" customClass="HalfEmbeddingSegue" customModule="Segue" customModuleProvider="target" id="6S3-Sh-O6v"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -48,10 +48,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNc-V8-lZt">
-                                <rect key="frame" x="163" y="100" width="64" height="64"/>
+                                <rect key="frame" x="163" y="59" width="64" height="64"/>
                                 <state key="normal" image="close"/>
                                 <connections>
-                                    <segue destination="3ph-X6-7oD" kind="unwind" unwindAction="unwindToCustomSegue:" id="Fvj-jV-4xs"/>
+                                    <segue destination="3ph-X6-7oD" kind="unwind" customClass="HalfEmbeddingUnwindSeuge" customModule="Segue" customModuleProvider="target" unwindAction="unwindToCustomSegue:" id="Fvj-jV-4xs"/>
                                 </connections>
                             </button>
                         </subviews>

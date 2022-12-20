@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EDC788A2951E26B006B7BD5 /* HalfEmbeddingSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC78892951E26B006B7BD5 /* HalfEmbeddingSegue.swift */; };
+		7EDC788C2951E394006B7BD5 /* HalfEmbeddingUnwindSeuge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDC788B2951E394006B7BD5 /* HalfEmbeddingUnwindSeuge.swift */; };
 		AA8A1DC3211C221600D82EB4 /* UnwindSegue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8A1DC1211C221600D82EB4 /* UnwindSegue.storyboard */; };
 		AA8A1DC5211C223A00D82EB4 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8A1DC4211C223A00D82EB4 /* FirstViewController.swift */; };
 		AA8A1DC7211C225500D82EB4 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8A1DC6211C225500D82EB4 /* SecondViewController.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7EDC78892951E26B006B7BD5 /* HalfEmbeddingSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfEmbeddingSegue.swift; sourceTree = "<group>"; };
+		7EDC788B2951E394006B7BD5 /* HalfEmbeddingUnwindSeuge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfEmbeddingUnwindSeuge.swift; sourceTree = "<group>"; };
 		AA8A1DC2211C221600D82EB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Segue/Base.lproj/UnwindSegue.storyboard; sourceTree = "<group>"; };
 		AA8A1DC4211C223A00D82EB4 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		AA8A1DC6211C225500D82EB4 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 			children = (
 				AA8A1DCD211C4FE200D82EB4 /* CustomSegue.storyboard */,
 				AA8A1DD0211C505100D82EB4 /* CustomSegueViewController.swift */,
+				7EDC78892951E26B006B7BD5 /* HalfEmbeddingSegue.swift */,
+				7EDC788B2951E394006B7BD5 /* HalfEmbeddingUnwindSeuge.swift */,
 			);
 			path = CustomSegue;
 			sourceTree = "<group>";
@@ -224,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA8A1DC7211C225500D82EB4 /* SecondViewController.swift in Sources */,
+				7EDC788A2951E26B006B7BD5 /* HalfEmbeddingSegue.swift in Sources */,
 				AA8A1DC5211C223A00D82EB4 /* FirstViewController.swift in Sources */,
 				AAC410FE211B7D490092834A /* PerformSegueViewController.swift in Sources */,
 				AA8A1DC9211C25F800D82EB4 /* ThirdViewController.swift in Sources */,
@@ -231,6 +238,7 @@
 				AADAA1F625ED249700C79F6F /* SceneDelegate.swift in Sources */,
 				AA8A1DD1211C505100D82EB4 /* CustomSegueViewController.swift in Sources */,
 				AAC410F5211B52A30092834A /* HostViewController.swift in Sources */,
+				7EDC788C2951E394006B7BD5 /* HalfEmbeddingUnwindSeuge.swift in Sources */,
 				AAC41102211B80BB0092834A /* MessageViewController.swift in Sources */,
 				AAC410E0211B523E0092834A /* AppDelegate.swift in Sources */,
 			);
