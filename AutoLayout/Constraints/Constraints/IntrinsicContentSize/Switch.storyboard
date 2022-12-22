@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,13 +17,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pqu-EP-orD">
-                                <rect key="frame" x="183" y="433" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pqu-EP-orD">
+                                <rect key="frame" x="183" y="433" width="202" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="3Sk-IH-LLM"/>
+                                    <constraint firstAttribute="height" constant="200" id="F0n-Nv-eiw"/>
+                                </constraints>
                             </switch>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="AYz-Qf-oqV">
+                                <rect key="frame" x="18" y="92" width="204" height="31"/>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pqu-EP-orD" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="341" id="ApW-Uo-T5a"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="AYz-Qf-oqV" secondAttribute="trailing" constant="194" id="Rq1-TV-ukE"/>
+                            <constraint firstItem="AYz-Qf-oqV" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="dLs-Oc-D1F"/>
+                            <constraint firstItem="pqu-EP-orD" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="183" id="jhW-oe-t6i"/>
+                            <constraint firstItem="AYz-Qf-oqV" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="tUA-tf-6HC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Switch" id="t64-sS-cBq"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

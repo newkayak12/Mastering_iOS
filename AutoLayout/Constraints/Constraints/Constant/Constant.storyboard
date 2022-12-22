@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q5j-1I-VVs">
-                                <rect key="frame" x="20" y="108" width="100" height="100"/>
+                                <rect key="frame" x="20" y="112" width="100" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="1zM-SA-cNL"/>
@@ -26,7 +26,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello Auto Layout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Md2-sv-DBa">
-                                <rect key="frame" x="89" y="429.5" width="236" height="37"/>
+                                <rect key="frame" x="78.5" y="427.5" width="257.5" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlu-rb-CBk">
-                                <rect key="frame" x="89" y="474" width="236" height="20"/>
+                                <rect key="frame" x="78.5" y="476" width="257.5" height="20"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="zNh-7B-AX7"/>
@@ -74,6 +74,7 @@
                         <outlet property="blueViewLeadingConstraint" destination="aa9-mx-6uw" id="azW-nJ-twO"/>
                         <outlet property="blueViewTopConstraint" destination="Ies-RY-y1S" id="MXw-Ed-Smd"/>
                         <outlet property="blueViewWidthConstraint" destination="mmf-cd-1Xw" id="94e-N9-GpI"/>
+                        <outlet property="buttonBottom" destination="PTQ-Jq-UMe" id="uEr-FG-OPC"/>
                         <outlet property="grayButton" destination="rcA-cr-U4A" id="nQr-m4-gsT"/>
                         <outlet property="grayButtonBottomConstraint" destination="PTQ-Jq-UMe" id="wqZ-tT-KLf"/>
                     </connections>

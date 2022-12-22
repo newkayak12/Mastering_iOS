@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,11 +24,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="world" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsB-4n-tpg">
-                                <rect key="frame" x="630" y="196" width="463" height="239"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="world" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsB-4n-tpg">
+                                <rect key="frame" x="630" y="255.5" width="231.5" height="119.5"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="200"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -39,9 +38,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="world" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXQ-JN-sNR">
-                                <rect key="frame" x="630" y="590" width="463" height="239"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="world" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXQ-JN-sNR">
+                                <rect key="frame" x="630" y="553.5" width="463" height="239"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="200"/>
                                 <nil key="textColor"/>
@@ -53,6 +51,10 @@
                         <constraints>
                             <constraint firstItem="fCB-bq-SAW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="273" id="BkM-E9-qUq"/>
                             <constraint firstItem="DqK-zB-5lL" firstAttribute="top" secondItem="fCB-bq-SAW" secondAttribute="bottom" constant="274" id="ErH-wK-OUR"/>
+                            <constraint firstItem="dsB-4n-tpg" firstAttribute="bottom" secondItem="fCB-bq-SAW" secondAttribute="bottom" id="MMf-Ea-1vv"/>
+                            <constraint firstItem="NXQ-JN-sNR" firstAttribute="leading" secondItem="DqK-zB-5lL" secondAttribute="trailing" constant="141" id="PdU-9E-ibS"/>
+                            <constraint firstItem="NXQ-JN-sNR" firstAttribute="firstBaseline" secondItem="DqK-zB-5lL" secondAttribute="firstBaseline" id="YIG-vx-E1i"/>
+                            <constraint firstItem="dsB-4n-tpg" firstAttribute="leading" secondItem="fCB-bq-SAW" secondAttribute="trailing" constant="141" id="aEY-QA-hC8"/>
                             <constraint firstItem="DqK-zB-5lL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="273" id="uxU-00-6cm"/>
                             <constraint firstItem="fCB-bq-SAW" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="181" id="yxe-2V-1QV"/>
                         </constraints>
