@@ -1,33 +1,36 @@
-//
-//  Mastering iOS
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class HeaderBodyFooterViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let header = UIView(frame: .zero)
+        header.translatesAutoresizingMaskIntoConstraints = false
+        header.backgroundColor = .systemRed
         
+        view.addSubview(header)
+        header.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        header.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        header.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        header.heightAnchor.constraint(equalToConstant: 130).isActive = true
+        
+        let footer = UIView(frame: .zero)
+        footer.translatesAutoresizingMaskIntoConstraints = false
+        footer.backgroundColor = .systemBlue
+        
+        view.addSubview(footer)
+        footer.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        footer.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        footer.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        footer.heightAnchor.constraint(equalToConstant: 130).isActive = true
+        
+        
+        let body = UIView(frame: .zero)
+        body.translatesAutoresizingMaskIntoConstraints = false
+        body.backgroundColor = .systemYellow
+        view.addSubview(body)
+        body.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        body.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        body.topAnchor.constraint(equalTo: header.bottomAnchor).isActive = true
+        body.bottomAnchor.constraint(equalTo: footer.topAnchor).isActive = true
     }
 }
