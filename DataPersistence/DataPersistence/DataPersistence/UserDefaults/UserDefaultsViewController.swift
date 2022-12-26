@@ -1,26 +1,10 @@
-//
-//  Copyright (c) 2019 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
+/**
+ Number Types [Bool, String, Data, Array, Dictionary, Date, URL]
+ NSCoding
+ */
 
 import UIKit
+ 
 
 class UserDefaultsViewController: UIViewController {
    
@@ -30,6 +14,7 @@ class UserDefaultsViewController: UIViewController {
    
    @IBOutlet weak var lastUpdatedLabel: UILabel!
    
+    let key = "sampleKey"
    func updateDateLabel() {
       let formatter = DateFormatter()
       formatter.dateStyle = .none
@@ -39,18 +24,33 @@ class UserDefaultsViewController: UIViewController {
    }
    
    @IBAction func saveData(_ sender: Any) {
-      
+//       UserDefaults.standard.set("Hello", forKey: key)
+       UserDefaults.standard.set(12.34, forKey: key)
    }
    
    @IBAction func loadData(_ sender: Any) {
-      
+//       valueLabel.text = UserDefaults.standard.string(forKey: key) ?? "not set"
+       valueLabel.text = "\(UserDefaults.standard.integer(forKey: thresholdKey))"
+       keyLabel.text = thresholdKey
    }
-   
+    
+    var token: NSObjectProtocol?
+    
+    deinit {
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
    
    override func viewDidLoad() {
       super.viewDidLoad()
-      
-      
-      
+//       print(UserDefaults.standard.dictionaryRepresentation())
+//       print(UserDefaults.standard.dictionaryWithValues(forKeys: [key]))
+       
+//       UserDefaults.standard.set(nil, forKey: key)//이렇게 지우거나
+//       UserDefaults.standard.removeObject(forKey: key) //이렇게 지우거나
+       token = NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: OperationQueue.main, using: { [weak self] (noti) in
+           self?.updateDateLabel()
+       })
    }
 }

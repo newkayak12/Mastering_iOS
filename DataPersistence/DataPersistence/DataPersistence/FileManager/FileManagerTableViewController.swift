@@ -1,25 +1,3 @@
-//
-//  Copyright (c) 2019 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 
@@ -33,26 +11,30 @@ struct Content {
    let url: URL
    
    var name: String {
-      return ""
+       let values = try? url.resourceValues(forKeys: [.localizedNameKey])
+       return values?.localizedName ?? "??"
    }
    
    var size: Int {
-      return 0
+       let values = try? url.resourceValues(forKeys: [.fileSizeKey])
+       return values?.fileSize ?? 0
    }
    
    var type: Type {
-      return .file
+       let values = try? url.resourceValues(forKeys: [.isDirectoryKey])
+       return values?.isDirectory == true ? .directory : .file;
    }
    
    var isExcludedFromBackup: Bool {
-      return false
+       let values = try? url.resourceValues(forKeys: [.isExcludedFromBackupKey])
+       return values?.isExcludedFromBackup ?? false
    }
 }
 
 
 
 class FileManagerTableViewController: UITableViewController {
-   
+   //iOS에서 경로는 URL 아니면 NSUrl 구조체
    var currentDirectoryUrl: URL?
    
    var contents = [Content]()
@@ -66,48 +48,193 @@ class FileManagerTableViewController: UITableViewController {
    
    
    func refreshContents() {
-      
+       contents.removeAll()
+       
+       defer {
+           tableView.reloadData()
+       }
+       
+       guard let url = currentDirectoryUrl else {
+           fatalError("EMPTY URL")
+       }
+       
+       do {
+           let properties: [URLResourceKey] = [.localizedNameKey, .isDirectoryKey, .fileSizeKey, .isExcludedFromBackupKey]
+           
+           let currentContentUrls = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options: .skipsHiddenFiles)
+           
+           
+           for url in currentContentUrls {
+               let content = Content(url: url)
+               contents.append(content)
+           }
+           
+           contents.sort {lhs, rhs -> Bool in
+               if lhs.type == rhs.type {
+                   return lhs.name.lowercased() < rhs.name.lowercased()
+               }
+               
+               return lhs.type.rawValue < rhs.type.rawValue
+           }
+       } catch {
+           print(error)
+       }
    }
    
    func updateNavigationTitle() {
-      
+       guard let url = currentDirectoryUrl else {
+           navigationItem.title = "???";
+           return
+           
+       }
+       
+       do {
+           let values = try url.resourceValues(forKeys: [.localizedNameKey])
+           navigationItem.title = values.localizedName
+       } catch {
+           print(error)
+       }
    }
    
    func move(to url: URL) {
-      
+       do {
+           let reachable = try url.checkResourceIsReachable()
+           if !reachable { return }
+       } catch {
+           print(error)
+       }
+       
+       
+       
+       if let vc = storyboard?.instantiateViewController(withIdentifier: "FileManagerTableViewController") as? FileManagerTableViewController {
+           vc.currentDirectoryUrl = url
+           navigationController?.pushViewController(vc, animated: true)
+       }
    }
 
-   
    func addDirectory(named: String) {
-      
+       guard let url = currentDirectoryUrl?.appendingPathComponent(named, isDirectory: true) else {return}
+       do {
+           try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+           refreshContents()
+       } catch {
+           print(error)
+       }
    }
    
    func addTextFile() {
-      
+       guard let sourceUrl = Bundle.main.url(forResource: "lorem", withExtension: "txt") else { return }
+       guard let targetUrl = currentDirectoryUrl?.appendingPathComponent("lorem").appendingPathExtension("txt") else { return }
+       
+       
+       do {
+           let data = try Data(contentsOf: sourceUrl)
+           try data.write(to: targetUrl)
+           
+           refreshContents()
+       } catch {
+           print(error)
+       }
    }
    
    func addImageFile() {
-      
+       guard let sourceUrl = Bundle.main.url(forResource: "fireworks", withExtension: "png") else {return}
+       
+       guard let targetUrl = currentDirectoryUrl?.appendingPathComponent(sourceUrl.lastPathComponent) else { return }
+       
+       do {
+           let data = try Data(contentsOf: sourceUrl)
+           try data.write(to: targetUrl)
+           
+           refreshContents()
+       } catch {
+           print(error)
+       }
    }
    
    func open(content: Content) {
-      
+       let ext = (content.url.lastPathComponent as NSString).pathExtension.lowercased()
+       
+       switch ext {
+           case "txt":
+               performSegue(withIdentifier: "textSegue", sender: content.url)
+           case "jpg", "png":
+               performSegue(withIdentifier: "imageSegue", sender: content.url)
+           default:
+               showNotSupportedAlert()
+       }
+       
    }
    
    func deleteDirectory(at url: URL) {
-      
+       do {
+           try FileManager.default.removeItem(at: url)
+           refreshContents()
+       } catch {
+           print(error)
+       }
    }
    
    func deleteFile(at url: URL) {
-      
+       DispatchQueue.global().async {
+           [weak self] in
+           do {
+               let manager = FileManager()
+               try manager.removeItem(at: url)
+               DispatchQueue.main.async {
+                   self?.refreshContents()
+               }
+           } catch {
+               print(error)
+           }
+       }
    }
-   
+//   MARK: - refactor
    func renameItem(at url: URL) {
-      
+       let alert = UIAlertController(title: "input fileName", message: "input file name", preferredStyle: .alert)
+       
+       alert.addTextField{ nameField in
+           nameField.placeholder = "input"
+       }
+       
+       let confirm = UIAlertAction(title: "OK", style: .default) {[weak self] (action) in
+           if let name = alert.textFields?.first?.text {
+               
+               var urls = url
+//               let name = "newname"
+               let ext = (url.lastPathComponent as NSString).pathExtension
+               
+               
+               var temp1newUrl = urls.deletingLastPathComponent()
+               var temp2newUrl = temp1newUrl.appendingPathComponent(name).appendingPathExtension(ext)
+               do {
+                   try FileManager.default.moveItem(at: url, to: temp2newUrl)
+                   self?.refreshContents()
+        //           FileManager.default.copyItem(at: <#T##URL#>, to: <#T##URL#>)
+               }catch {
+                   print(error)
+               }
+           }
+       }
+       let cancel = UIAlertAction(title: "Cancel", style: .destructive)
+       
+       alert.addAction(cancel)
+       alert.addAction(confirm)
+       
+       present(alert, animated: true)
+       
    }
    
    func updateBackupProperty(of url: URL, exclude: Bool) {
-      
+       do {
+           var targetUrl = url
+           var values = try targetUrl.resourceValues(forKeys: [.isExcludedFromBackupKey])
+           values.isExcludedFromBackup = exclude
+           try targetUrl.setResourceValues(values)
+       } catch {
+           print(error)
+       }
+       refreshContents()
    }
    
    override func viewWillAppear(_ animated: Bool) {
@@ -127,6 +254,9 @@ class FileManagerTableViewController: UITableViewController {
    
    override func viewDidLoad() {
       super.viewDidLoad()
+       if currentDirectoryUrl == nil {
+           currentDirectoryUrl = URL(fileURLWithPath: NSHomeDirectory())
+       }
       
       
    }

@@ -1,28 +1,34 @@
-//
-//  Copyright (c) 2019 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
-
-class Language {
+// MARK: - NSObject, NSCoding // encodable, decodable protocol을 채택하든
+class Language: NSObject, NSCoding, NSSecureCoding {
+    static var supportsSecureCoding: Bool {
+        return true
+    }
+    
+    func encode(with coder: NSCoder) { //항상 클래스 형식으로 인코딩 - 디코딩해야 한다.
+//        coder.encode(name, forKey: "name")
+        coder.encode(name as NSString, forKey: "name")
+//        coder.encode(version, forKey: "version")
+        coder.encode(version as NSNumber, forKey: "version")
+        coder.encode(logo, forKey: "logo")
+    }
+    
+    required init?(coder: NSCoder) {
+//        guard let name = coder.decodeObject(forKey: "name") as? String else { return nil }
+//        self.name = name
+        guard let name = coder.decodeObject(of: NSString.self, forKey: "name") else { return nil }
+        self.name = name as String
+        
+//        self.version = coder.decodeDouble(forKey: "version")
+        guard let version = coder.decodeObject(of: NSNumber.self, forKey: "version") else {return nil}
+        self.version =  version.doubleValue
+        
+//        guard let logo = coder.decodeObject(forKey: "logo") as? UIImage else { return  nil}
+//        self.logo = logo
+        guard let logo = coder.decodeObject(of: UIImage.self, forKey: "logo") else { return  nil}
+        self.logo = logo
+    }
+    
    let name: String
    let version: Double
    let logo: UIImage
@@ -50,11 +56,50 @@ class NSCodingViewController: UIViewController {
    
    
    @IBAction func encodeObject(_ sender: Any) {
-      
+       do {
+           guard let url = Bundle.main.url(forResource: "swiftlogo", withExtension: "png") else { return }
+           let data = try Data(contentsOf: url)
+           guard let img = UIImage(data: data) else { return }
+           
+           let obj =  Language(name: "Swift", version: 5.3, logo: img)
+           
+           
+           if #available(iOS 11.0, *) {
+               let archivedData = try NSKeyedArchiver.archivedData(withRootObject: obj, requiringSecureCoding: true)
+               try archivedData.write(to: fileUrl)
+           } else {
+               NSKeyedArchiver.archiveRootObject(obj, toFile: fileUrl.path)
+           }
+           
+           
+           
+           
+           print("Done")
+       } catch {
+           print(error)
+       }
    }
    
    
    @IBAction func decodeObject(_ sender: Any) {
-      
+       do {
+           let data = try Data(contentsOf: fileUrl)
+           var language:Language?
+           if #available(iOS 11.0, *) {
+               language = try NSKeyedUnarchiver.unarchivedObject(ofClass: Language.self, from: data)
+           } else {
+                language = NSKeyedUnarchiver.unarchiveObject(with: data) as? Language
+           }
+           
+           
+           
+           if let language = language {
+               self.imageView.image = language.logo
+               self.nameLabel.text = language.name
+               self.versionLabel.text = "\(language.version)"
+           }
+       } catch {
+           print(error)
+       }
    }
 }
