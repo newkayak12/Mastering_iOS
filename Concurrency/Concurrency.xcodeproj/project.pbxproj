@@ -39,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E15FF1F29596EBE009F2F96 /* operation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = operation.md; sourceTree = "<group>"; };
+		7E15FF2029597459009F2F96 /* interoperation.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = interoperation.md; sourceTree = "<group>"; };
 		AA03319C214C79030078393D /* DispatchQueue.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DispatchQueue.storyboard; sourceTree = "<group>"; };
 		AA03319E214C791F0078393D /* DispatchQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueViewController.swift; sourceTree = "<group>"; };
 		AA0331A2214CAF830078393D /* DispatchGroup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DispatchGroup.storyboard; sourceTree = "<group>"; };
@@ -153,6 +155,8 @@
 				AA3A242C214A07FC0055FB72 /* DownloadOperation.swift */,
 				AA3A242E214A08D90055FB72 /* ReloadOperation.swift */,
 				AA3A2430214A0C930055FB72 /* FilterOperation.swift */,
+				7E15FF1F29596EBE009F2F96 /* operation.md */,
+				7E15FF2029597459009F2F96 /* interoperation.md */,
 			);
 			path = Operation;
 			sourceTree = "<group>";

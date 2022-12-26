@@ -1,24 +1,3 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
 
 import UIKit
 
@@ -37,20 +16,45 @@ class DependencyViewController: UIViewController {
       listCollectionView.reloadData()
       uiOperations.removeAll()
       backgroundOperations.removeAll()
-      
-      
+       
+       DispatchQueue.global().async {
+           let reloadOp = ReloadOperation(collectionView: self.listCollectionView)
+           self.uiOperations.append(reloadOp)
+           
+           for (index, data) in PhotoDataSource.shared.list.enumerated(){
+               let downloadOp = DownloadOperation(target: data)
+               reloadOp.addDependency(downloadOp)
+               self.backgroundOperations.append(downloadOp)
+               
+               let filterOp = FilterOperation(target: data)
+               filterOp.addDependency(reloadOp)
+               self.backgroundOperations.append(filterOp)
+               
+               let reloadItemOp = ReloadOperation(collectionView: self.listCollectionView, indexPath: IndexPath(item: index, section: 0))
+               reloadItemOp.addDependency(filterOp)
+               self.uiOperations.append(reloadItemOp)
+           }
+           
+           
+           self.backgroundQueue.addOperations(self.backgroundOperations, waitUntilFinished: false)
+           self.mainQueue.addOperations(self.uiOperations, waitUntilFinished: false)
+       }
    }
    
    
    @IBAction func cancelOperation(_ sender: Any) {
-      
+//       mainQueue.cancelAllOperations()
+       //mainqueue 는 cancelAllOperations 만으로 취소 X
+       uiOperations.forEach { $0.cancel()}
+       backgroundQueue.cancelAllOperations()
    }
    
    
    override func viewDidLoad() {
       super.viewDidLoad()
-      
       PhotoDataSource.shared.reset()
+       
+       backgroundQueue.maxConcurrentOperationCount = 10 //1로 바꾸면 serial, 5보다 작으면 CPU 부하를 줄이는데 효과적
    }
 }
 
