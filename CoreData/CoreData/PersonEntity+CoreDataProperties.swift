@@ -2,7 +2,7 @@
 //  PersonEntity+CoreDataProperties.swift
 //  CoreData
 //
-//  Created by Sang Hyeon kim on 2022/12/28.
+//  Created by Sang Hyeon kim on 2022/12/29.
 //  Copyright © 2022 Keun young Kim. All rights reserved.
 //
 //
@@ -17,10 +17,8 @@ extension PersonEntity {
         return NSFetchRequest<PersonEntity>(entityName: "Person")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var age: Int16
+    @NSManaged public var name: String?
+    @NSManaged public var address: String?
 
-    func doSomethingInClass(){
-        
-    }
 }

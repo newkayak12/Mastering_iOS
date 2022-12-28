@@ -2,7 +2,7 @@
 //  PersonEntity+CoreDataClass.swift
 //  CoreData
 //
-//  Created by Sang Hyeon kim on 2022/12/28.
+//  Created by Sang Hyeon kim on 2022/12/29.
 //  Copyright © 2022 Keun young Kim. All rights reserved.
 //
 //
@@ -12,7 +12,5 @@ import CoreData
 
 @objc(PersonEntity)
 public class PersonEntity: NSManagedObject {
-    func doSomethingInExtension(){
-        
-    }
+
 }
