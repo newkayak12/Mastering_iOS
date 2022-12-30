@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		7E15FF66295BA8E5009F2F96 /* Sample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E15FF64295BA8E5009F2F96 /* Sample.xcdatamodeld */; };
 		7E15FF6C295CF58C009F2F96 /* DataManager+Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E15FF6B295CF58C009F2F96 /* DataManager+Person.swift */; };
-		7E48B915295CFD1F00E9B98C /* PersonEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E48B914295CFD1F00E9B98C /* PersonEntity+CoreDataProperties.swift */; };
-		7E48B917295CFD4E00E9B98C /* PersonEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E48B916295CFD4E00E9B98C /* PersonEntity+CoreDataClass.swift */; };
+		7E7F6685295EE0B300B24C25 /* PersonEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F6684295EE0B300B24C25 /* PersonEntity+CoreDataProperties.swift */; };
+		7E7F6687295EE0CE00B24C25 /* PersonEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F6686295EE0CE00B24C25 /* PersonEntity+CoreDataClass.swift */; };
 		AA10E0B9215EB64E00F28316 /* DataManager+BatchInsert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10E0B8215EB64E00F28316 /* DataManager+BatchInsert.swift */; };
 		AA10E0BD215EC2FD00F28316 /* DataManager+Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10E0BC215EC2FD00F28316 /* DataManager+Department.swift */; };
 		AA10E0BF215EC31900F28316 /* DataManager+Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10E0BE215EC31900F28316 /* DataManager+Employee.swift */; };
@@ -80,8 +80,8 @@
 /* Begin PBXFileReference section */
 		7E15FF65295BA8E5009F2F96 /* Sample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sample.xcdatamodel; sourceTree = "<group>"; };
 		7E15FF6B295CF58C009F2F96 /* DataManager+Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Person.swift"; sourceTree = "<group>"; };
-		7E48B914295CFD1F00E9B98C /* PersonEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		7E48B916295CFD4E00E9B98C /* PersonEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7E7F6684295EE0B300B24C25 /* PersonEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		7E7F6686295EE0CE00B24C25 /* PersonEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AA10E0B8215EB64E00F28316 /* DataManager+BatchInsert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+BatchInsert.swift"; sourceTree = "<group>"; };
 		AA10E0BC215EC2FD00F28316 /* DataManager+Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Department.swift"; sourceTree = "<group>"; };
 		AA10E0BE215EC31900F28316 /* DataManager+Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Employee.swift"; sourceTree = "<group>"; };
@@ -328,8 +328,8 @@
 		AA9C0E78215C0109000557A5 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				7E48B914295CFD1F00E9B98C /* PersonEntity+CoreDataProperties.swift */,
-				7E48B916295CFD4E00E9B98C /* PersonEntity+CoreDataClass.swift */,
+				7E7F6686295EE0CE00B24C25 /* PersonEntity+CoreDataClass.swift */,
+				7E7F6684295EE0B300B24C25 /* PersonEntity+CoreDataProperties.swift */,
 				7E15FF64295BA8E5009F2F96 /* Sample.xcdatamodeld */,
 				AA50861F21766A0D00570EE3 /* DataManager.swift */,
 			);
@@ -491,7 +491,7 @@
 				AA9C0E7E215C0691000557A5 /* PersonComposeViewController.swift in Sources */,
 				AA32406D215DBFF30050F2F7 /* RDepartmentListViewController.swift in Sources */,
 				AA10E0BF215EC31900F28316 /* DataManager+Employee.swift in Sources */,
-				7E48B917295CFD4E00E9B98C /* PersonEntity+CoreDataClass.swift in Sources */,
+				7E7F6687295EE0CE00B24C25 /* PersonEntity+CoreDataClass.swift in Sources */,
 				AA73AA08215FF2C500A877BE /* PredicateViewController.swift in Sources */,
 				AA694DB1217607B00005FDF5 /* ProfileViewController.swift in Sources */,
 				AA20408F216E5171002B5DC6 /* BatchProcessingTableViewController.swift in Sources */,
@@ -504,7 +504,7 @@
 				AA4B175F216DD25C000EF6CE /* ChildContextTableViewController.swift in Sources */,
 				AA50862021766A0D00570EE3 /* DataManager.swift in Sources */,
 				AAAE6DC92168A9680062BCAE /* ContactTransformer.swift in Sources */,
-				7E48B915295CFD1F00E9B98C /* PersonEntity+CoreDataProperties.swift in Sources */,
+				7E7F6685295EE0B300B24C25 /* PersonEntity+CoreDataProperties.swift in Sources */,
 				AADE6745216BA3C300E8B302 /* BackgroundTaskTableViewController.swift in Sources */,
 				AA324067215DB4590050F2F7 /* BatchInsertViewController.swift in Sources */,
 				AA73AA04215FE57E00A877BE /* BatchSizeTableViewController.swift in Sources */,
