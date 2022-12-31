@@ -44,7 +44,7 @@ companies.filtered(using: predicate)
 /*:
  # Aggregation Operators
  */
-
+//컬렉션 속성에서만
 /*:
  ## @count
  */
@@ -88,7 +88,7 @@ departments.filtered(using: predicate)
 
 predicate = NSPredicate(format: "employees[LAST].age >= 35")
 departments.filtered(using: predicate)
-
+//MARK: - COUNT
 predicate = NSPredicate(format: "employees[SIZE] == 6")
 departments.filtered(using: predicate)
 

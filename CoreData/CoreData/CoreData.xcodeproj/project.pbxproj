@@ -80,6 +80,7 @@
 /* Begin PBXFileReference section */
 		7E15FF65295BA8E5009F2F96 /* Sample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sample.xcdatamodel; sourceTree = "<group>"; };
 		7E15FF6B295CF58C009F2F96 /* DataManager+Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Person.swift"; sourceTree = "<group>"; };
+		7E2DC41829601056002AA280 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7E7F6684295EE0B300B24C25 /* PersonEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		7E7F6686295EE0CE00B24C25 /* PersonEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AA10E0B8215EB64E00F28316 /* DataManager+BatchInsert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+BatchInsert.swift"; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 			children = (
 				AA1119CA21676FA0003C2DF7 /* FetchedResultsController.storyboard */,
 				AA1119CC21676FDB003C2DF7 /* FetchedResultsControllerTableViewController.swift */,
+				7E2DC41829601056002AA280 /* README.md */,
 			);
 			path = FetchedResultsController;
 			sourceTree = "<group>";

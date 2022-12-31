@@ -8,6 +8,7 @@
         </fetchedProperty>
     </entity>
     <entity name="Employee" representedClassName="EmployeeEntity" parentEntity="Person" syncable="YES" codeGenerationType="class">
+        <attribute name="contact" optional="YES" attributeType="Transformable" valueTransformerName="ContactTransfomer" customClassName=".Contact"/>
         <attribute name="salary" attributeType="Decimal" defaultValueString="0.0"/>
         <relationship name="department" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Department" inverseName="employees" inverseEntity="Department"/>
     </entity>

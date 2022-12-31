@@ -1,24 +1,14 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
+///
+///faulting (proxy?)
+///store -> fetch -> managedObject에 placeholder Object 저장(기본적인),
+///실제 필요할 떄 access 필요한 만큼 캐시를 확인하고 없으면 가져온다. (firing faults)
+///
+///이렇게 메모리 사용량을 줄인다.
+///
+///그러나 fault를 여러 번 fire하면 오버헤드가 생긴다.
+///
+///Uniquing은 원래 아는..
+///
 
 import UIKit
 import CoreData
@@ -28,7 +18,9 @@ class FaultingTableViewController: UITableViewController {
    var list = [NSManagedObject]()
    
    @IBAction func fire(_ sender: Any) {
-      
+       list.forEach {
+           DataManager.shared.mainContext.refresh($0, mergeChanges: false)
+       }
    }
    
    func fetchAllEmployee() -> [NSManagedObject] {
@@ -43,6 +35,7 @@ class FaultingTableViewController: UITableViewController {
          
          request.fetchLimit = 100
          
+          request.returnsObjectsAsFaults = true
          do {
             list = try context.fetch(request)
          } catch {

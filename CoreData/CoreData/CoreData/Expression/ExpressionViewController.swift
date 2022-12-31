@@ -1,25 +1,3 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 import CoreData
 
@@ -41,6 +19,27 @@ class ExpressionViewController: UIViewController {
       let sortByName = NSSortDescriptor(key: "name", ascending: true)
       request.sortDescriptors = [sortByName]
       
+       request.resultType = .dictionaryResultType
+       
+       let employeeCountExprDescription = NSExpressionDescription()
+       employeeCountExprDescription.name = "count" //Dictionary's Key
+       
+       let countArg = NSExpression(forKeyPath: "employees")
+       let countExpr  = NSExpression(forFunction: "count:", arguments: [countArg])//강의페이지 목록에서 다른 함수도 확인할 수 있음
+       
+       employeeCountExprDescription.expression = countExpr
+       employeeCountExprDescription.expressionResultType = .integer64AttributeType
+       
+       
+       let averageSalaryExprDescription = NSExpressionDescription()
+       averageSalaryExprDescription.name = "avg"
+       
+       let salaryArg = NSExpression(forKeyPath: "employees.salary")
+       averageSalaryExprDescription.expression = NSExpression(forFunction: "average:", arguments: [salaryArg])
+       averageSalaryExprDescription.expressionResultType = .decimalAttributeType
+       
+       
+       request.propertiesToFetch = ["name", employeeCountExprDescription, averageSalaryExprDescription]
       
       
       do {
