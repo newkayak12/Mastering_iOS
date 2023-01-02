@@ -9,14 +9,17 @@
     </entity>
     <entity name="Employee" representedClassName="EmployeeEntity" parentEntity="Person" syncable="YES" codeGenerationType="class">
         <attribute name="contact" optional="YES" attributeType="Transformable" valueTransformerName="ContactTransformer" customClassName=".Contact"/>
-        <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="salary" attributeType="Decimal" defaultValueString="0.0"/>
         <relationship name="department" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Department" inverseName="employees" inverseEntity="Department"/>
+        <relationship name="profile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo"/>
     </entity>
     <entity name="Person" representedClassName="PersonEntity" isAbstract="YES" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="age" attributeType="Integer 16" minValueString="0" maxValueString="50" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String" minValueString="2" maxValueString="30"/>
+    </entity>
+    <entity name="Photo" representedClassName="PhotoEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="photo" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
     </entity>
     <entity name="Task" representedClassName="TaskEntity" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>

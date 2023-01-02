@@ -53,10 +53,10 @@ class ValidationViewController: UIViewController {
                if let msg = error.userInfo[NSLocalizedDescriptionKey] as? String { showAlert(message:  msg)}
                else { showAlert(message: "Please enter a valid value.")}
                
-           case NSValidationInvalidAgeAndDepartment:
-               if let attr = error.userInfo[NSValidationKeyErrorKey] as? String, attr == "name" {
-                   showAlert(message: "Please enter a name between 2 and 30 characters.")
-               } 
+//           case NSValidationInvalidAgeAndDepartment:
+//               if let attr = error.userInfo[NSValidationKeyErrorKey] as? String, attr == "name" {
+//                   showAlert(message: "Please enter a name between 2 and 30 characters.")
+//               }
            default:
                break;
            }
