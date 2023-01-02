@@ -38,4 +38,9 @@ class DataManager {
            }
        }
    }
+    
+    lazy var backgroundContext: NSManagedObjectContext = {
+        guard let context = container?.newBackgroundContext() else {fatalError()}
+        return context
+    }()
 }

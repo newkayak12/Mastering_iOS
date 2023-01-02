@@ -1,6 +1,6 @@
 import Foundation
 @objc(ContactTransformer)
-class ContactTransfomer: ValueTransformer {
+class ContactTransformer: ValueTransformer {
     override class func transformedValueClass() -> AnyClass {
         return NSData.self
     }

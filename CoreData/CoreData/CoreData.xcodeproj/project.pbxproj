@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7E15FF66295BA8E5009F2F96 /* Sample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E15FF64295BA8E5009F2F96 /* Sample.xcdatamodeld */; };
 		7E15FF6C295CF58C009F2F96 /* DataManager+Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E15FF6B295CF58C009F2F96 /* DataManager+Person.swift */; };
+		7E2DC41B29606080002AA280 /* EmployeeEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2DC41929606080002AA280 /* EmployeeEntity+CoreDataClass.swift */; };
+		7E2DC41C29606080002AA280 /* EmployeeEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2DC41A29606080002AA280 /* EmployeeEntity+CoreDataProperties.swift */; };
 		7E7F6685295EE0B300B24C25 /* PersonEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F6684295EE0B300B24C25 /* PersonEntity+CoreDataProperties.swift */; };
 		7E7F6687295EE0CE00B24C25 /* PersonEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7F6686295EE0CE00B24C25 /* PersonEntity+CoreDataClass.swift */; };
 		AA10E0B9215EB64E00F28316 /* DataManager+BatchInsert.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10E0B8215EB64E00F28316 /* DataManager+BatchInsert.swift */; };
@@ -81,6 +83,8 @@
 		7E15FF65295BA8E5009F2F96 /* Sample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sample.xcdatamodel; sourceTree = "<group>"; };
 		7E15FF6B295CF58C009F2F96 /* DataManager+Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Person.swift"; sourceTree = "<group>"; };
 		7E2DC41829601056002AA280 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7E2DC41929606080002AA280 /* EmployeeEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeEntity+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		7E2DC41A29606080002AA280 /* EmployeeEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeeEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		7E7F6684295EE0B300B24C25 /* PersonEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		7E7F6686295EE0CE00B24C25 /* PersonEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AA10E0B8215EB64E00F28316 /* DataManager+BatchInsert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+BatchInsert.swift"; sourceTree = "<group>"; };
@@ -330,6 +334,8 @@
 		AA9C0E78215C0109000557A5 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				7E2DC41929606080002AA280 /* EmployeeEntity+CoreDataClass.swift */,
+				7E2DC41A29606080002AA280 /* EmployeeEntity+CoreDataProperties.swift */,
 				7E7F6686295EE0CE00B24C25 /* PersonEntity+CoreDataClass.swift */,
 				7E7F6684295EE0B300B24C25 /* PersonEntity+CoreDataProperties.swift */,
 				7E15FF64295BA8E5009F2F96 /* Sample.xcdatamodeld */,
@@ -512,12 +518,14 @@
 				AA73AA04215FE57E00A877BE /* BatchSizeTableViewController.swift in Sources */,
 				AA61AE462160129900AF1404 /* StoredFetchRequestTableViewController.swift in Sources */,
 				AA1119CD21676FDB003C2DF7 /* FetchedResultsControllerTableViewController.swift in Sources */,
+				7E2DC41B29606080002AA280 /* EmployeeEntity+CoreDataClass.swift in Sources */,
 				AAAE6DCD2168AB6E0062BCAE /* TransformableTableViewController.swift in Sources */,
 				AA73AA00215FD9F600A877BE /* AsyncFetchingTableViewController.swift in Sources */,
 				AA10E0C7215F0AEF00F28316 /* FetchAllViewController.swift in Sources */,
 				AA694DAF2176058C0005FDF5 /* MigrationTableViewController.swift in Sources */,
 				AA7521BA2173CB6800C63706 /* FetchBatchSizeTableViewController.swift in Sources */,
 				AA324061215DA7570050F2F7 /* RawData.swift in Sources */,
+				7E2DC41C29606080002AA280 /* EmployeeEntity+CoreDataProperties.swift in Sources */,
 				AA4B175D216DC968000EF6CE /* BackgroundContextTableViewController.swift in Sources */,
 				AA10E0C1215ED9D900F28316 /* RDepartmentComposerTableViewController.swift in Sources */,
 				AA61AE482160197D00AF1404 /* FetchedPropertyTableViewController.swift in Sources */,
