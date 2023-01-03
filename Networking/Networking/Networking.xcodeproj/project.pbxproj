@@ -51,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7ED4BF10296450F000E635C2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AA0C84E02191EA690069ECDC /* BackgroundDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundDownloadManager.swift; sourceTree = "<group>"; };
 		AA1F3BD0218AD2F90054DDCF /* DataTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DataTask.storyboard; sourceTree = "<group>"; };
 		AA1F3BD2218AD3FB0054DDCF /* DataTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskTableViewController.swift; sourceTree = "<group>"; };
@@ -320,6 +321,7 @@
 				AA7394442188C336006D590B /* URLReqeust */,
 				AA1F3BD8218AE9B10054DDCF /* Shared */,
 				AA73944321889C3C006D590B /* Predefined */,
+				7ED4BF10296450F000E635C2 /* README.md */,
 			);
 			path = Networking;
 			sourceTree = "<group>";

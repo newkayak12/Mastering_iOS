@@ -1,32 +1,13 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
+
 //
 
 import Foundation
 
 // Please enter the file path uploaded to the dropbox here.
 // https://dl.dropboxusercontent.com
-let bigFileUrlStr = ""
-let smallFileUrlStr = ""
-let picUrlStr = ""
+let bigFileUrlStr = "https://dl.dropboxusercontent.com/s/d0zkph3tkr2zota/intro-big.mp4?dl=0"
+let smallFileUrlStr = "https://dl.dropboxusercontent.com/s/cda9wkyy6cn7vm2/intro-small.mp4?dl=0"
+let picUrlStr = "https://dl.dropboxusercontent.com/s/u72b472jf75g0q1/pic.jpg?dl=0"
 
 // Please enter the dropbox access token here.
-let dropBoxAccessToken = ""
+let dropBoxAccessToken = "sl.BWNsPeUj6fTE4byiRVdbkmmfmFxJZlCq-Jp1W6oo7PSXeUb1PcCR7QoM2Yd37V_kieJXl0W_2q4EMUpYwomW1E2GKwjZs42NlvKMxvk2LpLeSTe8xKoq_ru0A7Ekdd4TpkI0vI0"
