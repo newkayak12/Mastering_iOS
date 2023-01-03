@@ -13,7 +13,15 @@ struct Employee: Codable {
    var address: String?
    
    //
-   
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        guard ( 30...60 ).contains(age) else {
+            throw EncodingError.invalidRange
+        }
+        try container.encode(age, forKey: .age)
+        try container.encodeIfPresent(address, forKey: .address)
+    }
    //
 }
 

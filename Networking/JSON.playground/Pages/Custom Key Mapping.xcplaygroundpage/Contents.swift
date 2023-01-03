@@ -9,7 +9,12 @@ struct Person: Codable {
    var address: String?
    
    //
-   
+    enum CodingKeys: String, CodingKey {
+        case firstName
+        case lastName
+        case age
+        case address = "homeAddress"
+    }
    //
 }
 

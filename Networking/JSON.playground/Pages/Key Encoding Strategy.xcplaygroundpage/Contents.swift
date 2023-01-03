@@ -25,7 +25,7 @@ do {
 }
 
 //
-
+encoder.keyEncodingStrategy = .convertToSnakeCase
 //
 
 do {
