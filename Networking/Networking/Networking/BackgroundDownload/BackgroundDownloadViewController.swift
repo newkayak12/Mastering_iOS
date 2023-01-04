@@ -1,25 +1,3 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class BackgroundDownloadViewController: UIViewController {
@@ -42,25 +20,28 @@ class BackgroundDownloadViewController: UIViewController {
    var token: NSObjectProtocol?
    
    var targetUrl: URL {
-      guard let targetUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("backgroundFile.mp4") else {
-         fatalError("Invalid File URL")
-      }
-
-      return targetUrl
+//      guard let targetUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("backgroundFile.mp4") else {
+//         fatalError("Invalid File URL")
+//      }
+//
+//      return targetUrl
+       return BackgroundDownloadManager.shared.targetUrl
    }
    
    var task: URLSessionDownloadTask?
    
-   lazy var session: URLSession = { [weak self] in
-      // Code Input Point #1
-
-      let config = URLSessionConfiguration.default
-      
-      // Code Input Point #1
-
-      let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.main)
-      return session
-   }()
+//   lazy var session: URLSession = { [weak self] in
+//      // Code Input Point #1
+//
+//      let config = URLSessionConfiguration.background(withIdentifier: "SampleSession")
+//
+//      // Code Input Point #1
+//
+//      let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.main)
+//      return session
+//   }()
+    
+    let session = BackgroundDownloadManager.shared.session
    
    
    @IBAction func startDownload(_ sender: Any) {
@@ -94,7 +75,13 @@ class BackgroundDownloadViewController: UIViewController {
       updateRecentDownload()
       
       // Code Input Point #4
-      
+       token = NotificationCenter.default.addObserver(forName: BackgroundDownloadManager.didWriteDataNotification, object: nil, queue: OperationQueue.main, using: { noti in
+           guard let userInfo = noti.userInfo else {return}
+           guard let downloadSize = userInfo[BackgroundDownloadManager.totalBytesWrittenKey] as? Int64 else {return}
+           guard let totalSize = userInfo[BackgroundDownloadManager.totalBytesExpectedToWriteKey] as? Int64 else {return}
+           
+           self.sizeLabel.text = "\(self.sizeFormatter.string(fromByteCount: downloadSize)) / \(self.sizeFormatter.string(fromByteCount: totalSize))"
+       })
       // Code Input Point #4
    }
    
@@ -110,30 +97,30 @@ class BackgroundDownloadViewController: UIViewController {
 }
 
 
-extension BackgroundDownloadViewController: URLSessionDownloadDelegate {
-   func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-      sizeLabel.text = "\(sizeFormatter.string(fromByteCount: totalBytesWritten))/\(sizeFormatter.string(fromByteCount: totalBytesExpectedToWrite))"
-   }
-
-   func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-      NSLog(">> %@ %@", self, #function)
-      print(error ?? "Done")
-   }
-
-   func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-      NSLog(">> %@ %@", self, #function)
-
-      do {
-         _ = try FileManager.default.replaceItemAt(targetUrl, withItemAt: location)
-      } catch {
-         print(error)
-         fatalError(error.localizedDescription)
-      }
-      updateRecentDownload()
-   }
-}
-
-
+//extension BackgroundDownloadViewController: URLSessionDownloadDelegate {
+//   func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+//      sizeLabel.text = "\(sizeFormatter.string(fromByteCount: totalBytesWritten))/\(sizeFormatter.string(fromByteCount: totalBytesExpectedToWrite))"
+//   }
+//
+//   func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+//      NSLog(">> %@ %@", self, #function)
+//      print(error ?? "Done")
+//   }
+//
+//   func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+//      NSLog(">> %@ %@", self, #function)
+//
+//      do {
+//         _ = try FileManager.default.replaceItemAt(targetUrl, withItemAt: location)
+//      } catch {
+//         print(error)
+//         fatalError(error.localizedDescription)
+//      }
+//      updateRecentDownload()
+//   }
+//}
+//
+//
 extension BackgroundDownloadViewController {
    func updateRecentDownload() {
       do {
