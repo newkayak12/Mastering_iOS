@@ -1,25 +1,3 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class SessionDelegateTableViewController: UITableViewController {
@@ -30,7 +8,13 @@ class SessionDelegateTableViewController: UITableViewController {
    var session: URLSession!
    
    // Code Input Point #3
-   
+   /**
+            URLSessionDelegate
+(INHERIT)      ᄂ URLSessionTaskDelegate
+(INHERIT)          ᄂ URLSessionDataDelegate
+                   ᄂ URLSessionDownloadDelegate
+    */
+    var buffer: Data?
    // Code Input Point #3
    
    @IBAction func sendReqeust(_ sender: Any) {
@@ -39,7 +23,12 @@ class SessionDelegateTableViewController: UITableViewController {
       }
       
       // Code Input Point #1
-      
+       let configuration = URLSessionConfiguration.default
+       session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
+       let task = session.dataTask(with: url)
+       task.resume()
+       
+       buffer = Data()
       // Code Input Point #1
    }
    
@@ -47,19 +36,44 @@ class SessionDelegateTableViewController: UITableViewController {
       super.viewWillDisappear(animated)
       
       // Code Input Point #6
-      
+//       session.finishTasksAndInvalidate() //flush
+       session.invalidateAndCancel() // stop
       // Code Input Point #6
    }
 }
 
 // Code Input Point #2
-
+extension SessionDelegateTableViewController: URLSessionDataDelegate { //openConnection
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+        guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+            completionHandler(.cancel)
+            return
+        }
+        completionHandler(.allow)
+    }
+    
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) { //transfer
+        dump(data)
+        buffer?.append(data)
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        if let error = error {
+            showErrorAlert(with: error.localizedDescription)
+        } else {
+            parse()
+        }
+    }
+}
 // Code Input Point #2
 
 extension SessionDelegateTableViewController {
    func parse() {
       // Code Input Point #4
       
+       guard let data = buffer else {
+           fatalError("Invalid Buffer")
+       }
       // Code Input Point #4
       
       let decoder = JSONDecoder()
@@ -75,6 +89,19 @@ extension SessionDelegateTableViewController {
       
       // Code Input Point #5
       
+       do {
+           let detail = try decoder.decode(BookDetail.self, from: data)
+           if detail.code == 200 {
+               titleLabel.text = detail.book.title
+               descLabel.text = detail.book.desc
+               tableView.reloadData()
+           }  else {
+               showErrorAlert(with: detail.message ?? "ERROR!!")
+           }
+       } catch {
+           showErrorAlert(with: error.localizedDescription)
+           print(error)
+       }
       // Code Input Point #5
    }
 }

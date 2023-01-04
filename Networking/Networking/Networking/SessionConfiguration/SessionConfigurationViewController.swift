@@ -1,24 +1,21 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
+///
+/// SESSION CONFIGURATION
+/// TLS Levels
+/// Cellular Usage
+/// Network Service Type
+/// Cookie Policies
+/// Cache Polices
+/// Storage Objects
+/// Request Timeouts
+/// Resource Timeouts
+///
+///
+/// > Shared Session Configuration (SystemDefault)
+/// > Default Session Configuration (SystemDefault + SessionDelegate + ResponseCaching) -> KeyChain에 인증정보 저장
+/// > Ephemeral Session Configuration (SystemDefault + SessionDelegate + ResponseCaching(MemoryOnly))
+/// > Background Session Configuartion (SystemDefault + SessionDelegate + BackgroundTransfer)
+///
+///
 
 import UIKit
 
@@ -26,31 +23,37 @@ class SessionConfigurationViewController: UIViewController {
    
    @IBAction func useSharedConfiguration(_ sender: Any) {
       // Code Input Point #1
-      
+       sendReqeust(using: URLSession.shared)
       // Code Input Point #1
    }
    
    @IBAction func useDefaultConfiguration(_ sender: Any) {
       // Code Input Point #2
-      
+       sendReqeust(using: URLSession(configuration: .default))
       // Code Input Point #2
    }
    
    @IBAction func useEphemeralConfiguration(_ sender: Any) {
       // Code Input Point #3
-      
+       sendReqeust(using: URLSession(configuration: .ephemeral))
       // Code Input Point #3
    }
    
    @IBAction func useBackgroundConfiguration(_ sender: Any) {
       // Code Input Point #4
-      
+       sendReqeust(using: URLSession(configuration: .background(withIdentifier: "DownTask")))
       // Code Input Point #4
    }
    
    @IBAction func useCustomConfiguration(_ sender: Any) {
       // Code Input Point #5
-      
+       let configuration = URLSessionConfiguration.default
+       configuration.timeoutIntervalForRequest = 30
+       configuration.httpAdditionalHeaders = ["ZUMO-API-VERSION":"2.0.0"]
+       configuration.networkServiceType = .responsiveData
+       
+       let session = URLSession(configuration: configuration)
+       sendReqeust(using: session)
       // Code Input Point #5
    }
    

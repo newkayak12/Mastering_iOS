@@ -1,25 +1,3 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 
@@ -50,7 +28,13 @@ class UploadTaskViewController: UIViewController {
    }
    
    // Code Input Point #2
-   
+    var uploadTask: URLSessionUploadTask?
+    
+    lazy var session: URLSession = { [weak self] in
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.main)
+        return session
+    }()
    // Code Input Point #2
    
    @IBAction func uploadWithProgress(_ sender: Any) {
@@ -65,7 +49,8 @@ class UploadTaskViewController: UIViewController {
       uploadProgressView.progress = 0.0
    
       // Code Input Point #3
-      
+       uploadTask = session.uploadTask(with: dropboxUploadRequest, from: data)
+       uploadTask?.resume()
       // Code Input Point #3
    }
    
@@ -79,7 +64,31 @@ class UploadTaskViewController: UIViewController {
       }
       
       // Code Input Point #1
-      
+       let task = URLSession.shared.uploadTask(with: dropboxUploadRequest, from: data) { data, response, error in
+           if let error = error {
+               self.showErrorAlert(with: error.localizedDescription)
+               print(error)
+               return
+           }
+           
+           guard let httpResponse = response as? HTTPURLResponse else {
+               self.showErrorAlert(with: "INVALID REPSONSE")
+               return
+           }
+           
+           guard (200...299).contains(httpResponse.statusCode) else {
+               self.showErrorAlert(with: "\(httpResponse.statusCode)")
+               return
+           }
+           
+           guard let data = data, let str = String(data: data, encoding: .utf8) else {
+               fatalError("INVALID DATA")
+           }
+           
+           self.showErrorAlert(with: str)
+       }
+       
+       task.resume()
       // Code Input Point #1
    }
    
@@ -87,11 +96,23 @@ class UploadTaskViewController: UIViewController {
       super.viewWillDisappear(animated)
 
       // Code Input Point #5
-      
+       session.invalidateAndCancel()
       // Code Input Point #5
    }
 }
 
 // Code Input Point #4
-
+extension UploadTaskViewController: URLSessionTaskDelegate {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {//upload
+        let current = formatter.string(fromByteCount: totalBytesSent)
+        let total = formatter.string(fromByteCount: totalBytesExpectedToSend)
+        sizeLabel.text = "\(current)/\(total)"
+        uploadProgressView.progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
+        
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        print(error ?? "DONE")
+    }
+}
 // Code Input Point #4

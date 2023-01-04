@@ -9,11 +9,28 @@
 > Use HTTPS(IPV4  관련 사용을 삼가야한다.)
 
 
-## URLSession
+## URLSession  
 > API Request
 > File Transfer
 > Authentication
 
+--> Shared Session( Default Configuration + Completion Handler)
+--> Default Session ( Default Configuation/Custom Configuration + Completion Handler/Deletagtion + Response Caching(Disk&Memory))
+--> Ephemeral Session ( Default Configuation/Custom Configuration + Completion Handler/Deletagtion + Response Caching(Memory ONLY))
+--> Background Sessions ( Default Configuration/Custom Configuartion + Delegation + Background Transfer)
+
+DataTask // Download/UploadTask // Stream Task
+
+```swift
+URLSession.shared ..Task(...)
+-> Task는 Suspended 상태로 만들어짐 resume()을 해야 함 
+```
+
+- 서버에서 전달된 데이터를 처리하는 방법 
+1. CompletionHandler
+        OR
+2. SessionDelegate 
+ 
 ## WebKit
 > Display web contents
 > Browser Feature
