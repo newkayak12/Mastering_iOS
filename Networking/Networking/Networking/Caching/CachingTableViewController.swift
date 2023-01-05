@@ -1,25 +1,9 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
+/**
+ useProtocolCachePolicy
+ reloadIgnoringLocalCacheData
+ returnCacheDataDontLoad
+ returnCacheDataElseLoad
+ */
 import UIKit
 
 
@@ -49,7 +33,8 @@ class CachingTableViewController: UITableViewController {
       let config = URLSessionConfiguration.default
       
       // Code Input Point #3
-      
+       config.requestCachePolicy = .reloadIgnoringLocalCacheData
+      //request의 캐싱 정책이 우선순위가 높다.
       // Code Input Point #3
       
       let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.main)
@@ -68,7 +53,7 @@ class CachingTableViewController: UITableViewController {
       var request = URLRequest(url: url)
       
       // Code Input Point #1
-      
+//       request.cachePolicy = .returnCacheDataElseLoad
       // Code Input Point #1
       
       let task = session.dataTask(with: request)
@@ -88,7 +73,12 @@ class CachingTableViewController: UITableViewController {
       request.cachePolicy = .returnCacheDataElseLoad
       
       // Code Input Point #2
-      
+       if lastDate.timeIntervalSinceNow < -5 {
+           request.cachePolicy = .reloadIgnoringLocalCacheData
+           lastDate = Date()
+       } else {
+           request.cachePolicy = .returnCacheDataElseLoad
+       }
       // Code Input Point #2
       
       let task = session.dataTask(with: request)      
@@ -97,7 +87,8 @@ class CachingTableViewController: UITableViewController {
    
    @IBAction func removeAllCache(_ sender: Any) {
       // Code Input Point #5
-      
+       print(#function)
+       session.configuration.urlCache?.removeAllCachedResponses()
       // Code Input Point #5
    }
    
@@ -110,7 +101,23 @@ class CachingTableViewController: UITableViewController {
 
 extension CachingTableViewController: URLSessionDataDelegate {
    // Code Input Point #4
-   
+    //서버 응답을 캐싱하기 전에 호출 이 메소드를 구현하지 않으면 디스크/메모리에 모두 저장됨
+    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, willCacheResponse proposedResponse: CachedURLResponse, completionHandler: @escaping (CachedURLResponse?) -> Void) {
+        guard let url = proposedResponse.response.url else {
+            completionHandler(nil)
+            return
+        }
+        
+        if url.host == "kxcoding-study.azurewebsites.net"{
+            completionHandler(proposedResponse)
+        } else if url.scheme == "https" {
+            let response = CachedURLResponse(response: proposedResponse.response, data: proposedResponse.data, userInfo: proposedResponse.userInfo, storagePolicy: URLCache.StoragePolicy.allowedInMemoryOnly)
+            completionHandler(response)
+        } else {
+            let response = CachedURLResponse(response: proposedResponse.response, data: proposedResponse.data, userInfo: proposedResponse.userInfo, storagePolicy: .notAllowed)
+            completionHandler(response)
+        }
+    }
    // Code Input Point #4
    
    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
@@ -137,38 +144,38 @@ extension CachingTableViewController: URLSessionDataDelegate {
 
 extension CachingTableViewController {
    func parse() {
-//      guard let data = buffer else {
-//         fatalError("Invalid Buffer")
-//      }
-//
-//      let decoder = JSONDecoder()
-//
-//      decoder.dateDecodingStrategy = .custom({ (decoder) -> Date in
-//         let container = try decoder.singleValueContainer()
-//         let dateStr = try container.decode(String.self)
-//
-//         let formatter = ISO8601DateFormatter()
-//         formatter.formatOptions = [.withFullDate, .withTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
-//         return formatter.date(from: dateStr)!
-//      })
-//
-//      do {
-//         let detail = try decoder.decode(BookDetail.self, from: data)
-//
-//         if detail.code == 200 {
-//            titleLabel.text = detail.book.title
-//            descLabel.text = detail.book.desc
-//
-//            let date = dateFormatter.string(from: Date())
-//            lastUpdateDateLabel.text = "Last Update\n\(date)"
-//            tableView.reloadData()
-//         } else {
-//            showErrorAlert(with: detail.message ?? "Error")
-//         }
-//      } catch {
-//         showErrorAlert(with: error.localizedDescription)
-//         print(error)
-//      }
+      guard let data = buffer else {
+         fatalError("Invalid Buffer")
+      }
+
+      let decoder = JSONDecoder()
+
+      decoder.dateDecodingStrategy = .custom({ (decoder) -> Date in
+         let container = try decoder.singleValueContainer()
+         let dateStr = try container.decode(String.self)
+
+         let formatter = ISO8601DateFormatter()
+         formatter.formatOptions = [.withFullDate, .withTime, .withDashSeparatorInDate, .withColonSeparatorInTime]
+         return formatter.date(from: dateStr)!
+      })
+
+      do {
+         let detail = try decoder.decode(BookDetail.self, from: data)
+
+         if detail.code == 200 {
+            titleLabel.text = detail.book.title
+            descLabel.text = detail.book.desc
+
+            let date = dateFormatter.string(from: Date())
+            lastUpdateDateLabel.text = "Last Update\n\(date)"
+            tableView.reloadData()
+         } else {
+            showErrorAlert(with: detail.message ?? "Error")
+         }
+      } catch {
+         showErrorAlert(with: error.localizedDescription)
+         print(error)
+      }
    }
 }
 
