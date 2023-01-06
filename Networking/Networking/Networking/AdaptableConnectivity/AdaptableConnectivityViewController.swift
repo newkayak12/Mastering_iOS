@@ -1,25 +1,3 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class AdaptableConnectivityViewController: UIViewController {
@@ -36,7 +14,14 @@ class AdaptableConnectivityViewController: UIViewController {
       let config = URLSessionConfiguration.default
       
       // Code Input Point #1
-      
+       config.waitsForConnectivity = true
+       config.timeoutIntervalForRequest = 5
+       //adaptableConnectivity가 활성화도히면 requestTimeOut은 무시된다.
+       config.timeoutIntervalForResource = 5 //-2103
+       /**
+        request는 최초 응답을 기준으로 타입아웃 판단
+        resource는 task 완료를 기준으로
+        */
       // Code Input Point #1
       
       let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.main)
@@ -64,7 +49,10 @@ class AdaptableConnectivityViewController: UIViewController {
 
 extension AdaptableConnectivityViewController: URLSessionDownloadDelegate {
    // Code Input Point #2
-   
+    func urlSession(_ session: URLSession, taskIsWaitingForConnectivity task: URLSessionTask) {
+        print(#function)
+        sizeLabel.text = "WAITING..."
+    }
    // Code Input Point #2
    
    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {

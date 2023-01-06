@@ -1,25 +1,3 @@
-//
-//  Copyright (c) 2018 KxCoding <kky0317@gmail.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import UIKit
 
 class TaskSchedulingViewController: UIViewController {
@@ -37,7 +15,7 @@ class TaskSchedulingViewController: UIViewController {
       let config = URLSessionConfiguration.background(withIdentifier: "SampleSession")
       
       // Code Input Point #2
-      
+       config.isDiscretionary = true //iOS에 네트워크 통신에 대한 재량권을 부여(wifi연결까지 기다린다던가 하는)
       // Code Input Point #2
       
       let session = URLSession(configuration: config, delegate: self, delegateQueue: OperationQueue.main)
@@ -52,7 +30,11 @@ class TaskSchedulingViewController: UIViewController {
       task = session.downloadTask(with: url)
       
       // Code Input Point #1
-      
+       task?.earliestBeginDate = Date(timeIntervalSinceNow: 5) //이러면 약 5초 이후에 실행
+       task?.countOfBytesClientExpectsToSend = 80 //네트워크 최적화의 힌트
+       task?.countOfBytesClientExpectsToReceive = 1024 * 1024 * 40//네트워크 최적화의 힌트로 판단
+       
+       sizeLabel.text = "Delayed..."
       // Code Input Point #1
       
       task?.resume()
@@ -68,7 +50,13 @@ class TaskSchedulingViewController: UIViewController {
 
 extension TaskSchedulingViewController: URLSessionDownloadDelegate {
    // Code Input Point #3
-   
+    //delay된 task가 실행되기 직전에 실행
+    func urlSession(_ session: URLSession, task: URLSessionTask, willBeginDelayedRequest request: URLRequest, completionHandler: @escaping (URLSession.DelayedRequestDisposition, URLRequest?) -> Void) {
+        DispatchQueue.main.async {
+            self.sizeLabel.text = "GO!"
+        }
+        completionHandler(.continueLoading, nil)
+    }
    // Code Input Point #3
    
    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
